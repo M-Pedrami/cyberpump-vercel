@@ -12,7 +12,7 @@ const exerciseSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum : ['Muscle Building', 'Strenght', 'Cardio', 'Fat Loss', 'Celebrity']
+    enum : ['Muscle Building', 'Strength', 'Cardio', 'Fat Loss', 'Celebrity']
   },
 
   level: {

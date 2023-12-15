@@ -39,4 +39,16 @@ const createExercise = async (req, res) => {
   }
 };
 
-module.exports = createExercise;
+const getExercises = async (req, res) => {
+  try {
+    const response = await Exercise.find();
+    res.send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Something went wrong getting all th exercises" });
+    console.log(error);
+  }
+};
+
+module.exports = {createExercise, getExercises};
