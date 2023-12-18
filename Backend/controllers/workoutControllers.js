@@ -22,10 +22,10 @@ const createWorkout = async (req, res, next) => {
 
 const getWorkouts = async (req, res, next) => {
   try {
-    const response = await Workout.find()
+    const workouts = await Workout.find()
       .populate("creator")
       .populate("exercises");
-    res.json(response);
+    res.json({workouts});
   } catch (error) {
     next(error);
   }
