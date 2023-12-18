@@ -1,4 +1,5 @@
 const Exercise = require("../models/exercise");
+const User = require ("../models/user")
 
 const createExercise = async (req, res) => {
   try {
@@ -6,6 +7,7 @@ const createExercise = async (req, res) => {
       body: {
         name,
         description,
+        creator,
         category,
         level,
         equipment,
@@ -19,6 +21,7 @@ const createExercise = async (req, res) => {
     const newExercise = await Exercise.create({
       name,
       description,
+      creator,
       category,
       level,
       equipment,
@@ -41,7 +44,7 @@ const createExercise = async (req, res) => {
 
 const getExercises = async (req, res) => {
   try {
-    const response = await Exercise.find();
+    const response = await Exercise.find().populate("creator");
     res.send(response);
   } catch (error) {
     res

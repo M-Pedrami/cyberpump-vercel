@@ -9,33 +9,37 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   category: {
     type: String,
     required: true,
-    enum : ['Muscle Building', 'Strength', 'Cardio', 'Fat Loss', 'Celebrity']
+    enum: ["Muscle Building", "Strength", "Cardio", "Fat Loss", "Celebrity"],
   },
 
   level: {
     type: String,
     required: true,
-    enum : ['Advanced', 'Intermediate', 'Beginner']
+    enum: ["Advanced", "Intermediate", "Beginner"],
   },
 
   equipment: {
     type: String,
     default: "None",
-
   },
 
-  instructions : {
-    type : [String]
+  instructions: {
+    type: [String],
   },
 
-  targetMuscle : {
+  targetMuscle: {
     type: String,
   },
 
-  exerciseType : {
+  exerciseType: {
     type: String,
   },
 
@@ -46,7 +50,7 @@ const exerciseSchema = new mongoose.Schema({
   thumbnail: {
     type: String,
   },
-  
+
   created_at: {
     type: Date,
     default: Date.now,
