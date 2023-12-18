@@ -1,16 +1,15 @@
 const User = require("../models/user");
 
-const getUsers = async (req, res) => {
+const getUsers = async (req, res, next) => {
   try {
     const response = await User.find();
     res.json(response);
   } catch (error) {
-    res.status(500).send({ message: "Something went wrong getting Users" });
-    console.log("getUsers Controller", error);
+    next(error);
   }
 };
 
-const addUser = async (req, res) => {
+const addUser = async (req, res, next) => {
   try {
     const {
       body: { username, password, email, role, avatar },
@@ -31,8 +30,7 @@ const addUser = async (req, res) => {
     });
     res.json({ message: "new user created", data: newUser });
   } catch (error) {
-    res.status(500).send({ message: "Something went wrong adding new User" });
-    console.log("getUsers Controller", error);
+    next(error);
   }
 };
 

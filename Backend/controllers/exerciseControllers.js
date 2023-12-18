@@ -1,7 +1,7 @@
 const Exercise = require("../models/exercise");
-const User = require ("../models/user")
+const User = require("../models/user");
 
-const createExercise = async (req, res) => {
+const createExercise = async (req, res, next) => {
   try {
     const {
       body: {
@@ -35,23 +35,17 @@ const createExercise = async (req, res) => {
       .status(201)
       .json({ message: "new exercise created", data: newExercise });
   } catch (error) {
-    res
-      .status(500)
-      .send({ message: "Something went wrong creating the exercise" });
-    console.log("createExercise Controller", error);
+    next(error);
   }
 };
 
-const getExercises = async (req, res) => {
+const getExercises = async (req, res, next) => {
   try {
     const response = await Exercise.find().populate("creator");
     res.send(response);
   } catch (error) {
-    res
-      .status(500)
-      .send({ message: "Something went wrong getting all th exercises" });
-    console.log(error);
+    next(error);
   }
 };
 
-module.exports = {createExercise, getExercises};
+module.exports = { createExercise, getExercises };
