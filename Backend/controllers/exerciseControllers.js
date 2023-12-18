@@ -41,8 +41,9 @@ const createExercise = async (req, res, next) => {
 
 const getExercises = async (req, res, next) => {
   try {
-    const response = await Exercise.find().populate("creator");
-    res.send(response);
+    const exercises = await Exercise.find().populate("creator");
+    res.send({exercises});
+    //changed response to exercises and the send argument to an object that includes the excercises the key/value pair within this object {exercises} = {exercises: excercises} because the key and the value have the same name
   } catch (error) {
     next(error);
   }
