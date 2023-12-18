@@ -17,7 +17,7 @@ const addUser = async (req, res, next) => {
     const found = await User.findOne({ email });
     if (found) {
       res
-        .status(404)
+        .status(400)
         .send({ message: `user already exist with email: ${email}` });
       return;
     }
