@@ -24,17 +24,17 @@ const registerUser = asyncHander(async (req, res, next) => {
   }
 
   const hash = await bcrypt.hash(password, 10);
-  const newUser = await User.create({
+  const user = await User.create({
     username,
     password: hash,
     email,
     role,
     avatar,
   });
-  if (newUser) {
+  if (user) {
     res.json({
       message: "new user created",
-      data: { id: newUser._id, email: newUser.email, name: newUser.username },
+      data: { id: user._id, email: user.email, name: user.username },
     });
   } else {
     res.status(400);
@@ -42,4 +42,25 @@ const registerUser = asyncHander(async (req, res, next) => {
   }
 });
 
-module.exports = { registerUser, getUsers };
+const loginUser = asyncHander(async (req, res) => {
+  const {
+    body: { email, password },
+  } = req;
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("Please provide all the fields");
+  }
+  const user = await User.findOne({ email });
+  console.log(user)
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      message: "You are Logged In",
+      data: { id: user._id, email: user.email, name: user.username },
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid credentials");
+  }
+});
+
+module.exports = { registerUser, getUsers, loginUser };

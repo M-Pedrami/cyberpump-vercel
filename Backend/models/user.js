@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    select: false
+    /* select: false */
+    //if active, the password will not be returned by findOne method and consquently the bcrypt.compare method will run into problems
   },
   email: {
     type: String,
