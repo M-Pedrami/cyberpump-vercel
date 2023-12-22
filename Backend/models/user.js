@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    /* select: false */
-    //if active, the password will not be returned by findOne method and consquently the bcrypt.compare method will run into problems
+     select: false 
+    //if active, the password will not be returned by findOne method and consquently the bcrypt.compare method will run into problems. A solution would be to add the password using select method in the controller and leave it as select false here.
   },
   email: {
     type: String,
