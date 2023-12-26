@@ -52,14 +52,25 @@ const loginUser = asyncHander(async (req, res) => {
   }
   const user = await User.findOne({ email }).select("+password");
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
-      message: "You are Logged In",
-      data: { id: user._id, email: user.email, name: user.username },
+    const payload = { id: user._id, email: user.email, name: user.username };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "300m",
     });
+    res.cookie("access_token", token, {httpOnly: true, maxAge: "3600000"}).send("You are logged in")
   } else {
     res.status(400);
     throw new Error("Invalid credentials");
   }
 });
 
-module.exports = { registerUser, getUsers, loginUser };
+const getProfile = asyncHander(async (req, res) =>{
+  const user = req.user;
+  if(!user){
+    res.status(403)
+    throw new Error("Access not Authorized")
+  }
+  res.send(user);
+
+})
+
+module.exports = { registerUser, getUsers, loginUser, getProfile };
