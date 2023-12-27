@@ -3,13 +3,14 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import Navbar from './components/Navbar';
 
 function App() {
 
 
   return (
     <>
-      <h1>Fitness Website</h1>
+      <Navbar/>
       <Routes>
         <Route path='/' element= {<Home />} />
         <Route path='/login' element= {<Login />} />
