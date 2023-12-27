@@ -7,7 +7,6 @@ const createExercise = async (req, res, next) => {
       body: {
         name,
         description,
-        creator,
         category,
         level,
         equipment,
@@ -17,6 +16,7 @@ const createExercise = async (req, res, next) => {
         video,
         thumbnail,
       },
+      user: {id: creator},
     } = req;
     const newExercise = await Exercise.create({
       name,
