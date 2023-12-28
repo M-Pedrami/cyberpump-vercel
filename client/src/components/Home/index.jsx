@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <div>
-      <h3>Home</h3>
+      <h1 className="text-3xl text-">Home</h1>
     </div>
   )
 }
