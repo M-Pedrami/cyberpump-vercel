@@ -22,7 +22,7 @@ export default function ProfileMenu() {
         />
       </MenuHandler>
       <MenuList className=" bg-transparent border-deep-orange-600 hover:border-deep-orange-500">
-        <MenuItem className="flex items-center gap-2 focus:bg-white  text-deep-orange-400 focus:text-gray-900">
+        <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900">
           <RiAccountCircleFill className="bg-transparent text-xl  " />
           <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
             My Profile
