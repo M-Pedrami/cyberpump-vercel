@@ -4,7 +4,7 @@ import { TbFaceIdError } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
+import { Card, CardBody, CardHeader, Typography, Input, Button } from "@material-tailwind/react";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -65,26 +65,25 @@ export default function Signup() {
 
   return (
     <>
-      <Card className="w-96 m-auto">
+      <Card className="w-96 m-auto mt-20">
         <CardHeader variant="gradient"
         color="gray"
-        className="mb-4 grid h-28 place-items-center">
+        className="mb-4 grid h-28 place-items-center  border-deep-orange-500 border-t-8">
           <Typography className="text-2xl font-bold">
             Sign Up
           </Typography>
         </CardHeader>
-        <CardBody className="flex flex-col gap-4">
-
-        </CardBody>
-      <form
+        <CardBody>
+        <form
           action="submit"
           method="post"
-          className="flex flex-col bg-white text-black m-auto w-28"
           onSubmit={handleSubmit}
+          className="flex flex-col gap-3"
         >
-          <input
+          <Input
             type="text"
-            placeholder="email"
+            size="lg"
+            label="Email"
             value={email}
             className="bg-transparent text-black"
             onChange={(e) => {
@@ -92,28 +91,32 @@ export default function Signup() {
             }}
           />
 
-          <input
-            type="text"
-            placeholder="password"
+          <Input
+            type="password"
+            size="lg"
+            label="Password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="bg-transparent text-black"
+            className="bg-transparent text-black mb-5"
           />
-          <input
+          <Input
             type="text"
-            placeholder="username"
+            label="Username"
+            size="lg"
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            className="bg-transparent text-black"
+            className="bg-transparent text-black mb-5"
           />
-          <button type="submit" className="bg-white text-black">
+          <Button type="submit" variant="gradient" className="mt-5 border-b-8 border-deep-orange-500" fullWidth>
             Submit
-          </button>
+          </Button>
         </form>
+        </CardBody>
+      
       </Card>
       {displayError && (
         <>
@@ -123,9 +126,7 @@ export default function Signup() {
           </p>
         </>
       )}
-      <button onClick={notify} className="bg-white text-black">
-        toast
-      </button>
+      
       <ToastContainer theme="dark"/>
     </>
   );
