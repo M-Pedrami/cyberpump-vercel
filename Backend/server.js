@@ -11,6 +11,7 @@ const userRouter = require("./routes/userRoutes");
 const workoutRouter = require("./routes/workoutRoutes");
 const errorHandler = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 //Database
 
@@ -19,6 +20,7 @@ db();
 //Middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 //Routers
 app.use("/user", userRouter);

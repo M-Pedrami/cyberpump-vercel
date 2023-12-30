@@ -32,7 +32,7 @@ const registerUser = asyncHander(async (req, res, next) => {
     avatar,
   });
   if (user) {
-    res.json({
+    res.status(201).json({
       message: "new user created",
       data: { id: user._id, email: user.email, name: user.username },
     });

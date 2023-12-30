@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getUsers,
   registerUser,
   loginUser,
   getProfile,
 } = require("../controllers/userControllers");
 const authenticate = require("../middlewares/authMiddleware")
+router.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
 
 router.route("/signup").post(registerUser);
 router.route("/login").post(loginUser);
