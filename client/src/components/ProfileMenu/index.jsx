@@ -9,6 +9,7 @@ import {
 import { RiAccountCircleFill } from "react-icons/ri";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { RiLogoutCircleFill } from "react-icons/ri";
+import UserPhoto from '../../assets/User.svg'
 
 export default function ProfileMenu() {
   return (
@@ -18,7 +19,7 @@ export default function ProfileMenu() {
           variant="circular"
           alt="avatar"
           className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+          src={UserPhoto}
         />
       </MenuHandler>
       <MenuList className=" bg-transparent border-deep-orange-600 hover:border-deep-orange-500">
