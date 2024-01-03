@@ -32,12 +32,12 @@ export default function Hero() {
             </p>
             <div className="flex space-x-10">
               <Link>
-                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700">
+                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300 ">
                   Get Started
                 </button>
               </Link>
               <Link>
-                <button className="p-3 px-6 pt-2 text-white text-xl font-bold bg-deep-orange-700 bg-opacity-10 border border-deep-orange-700 rounded-full  hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400">
+                <button className="p-3 px-6 pt-2 text-white text-xl font-bold bg-deep-orange-700 bg-opacity-10 border border-deep-orange-700 rounded-full  hover:bg-deep-orange-700 transition-all duration-300">
                   Personalize Workout
                 </button>
               </Link>
