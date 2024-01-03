@@ -43,7 +43,7 @@ export default function ContentSection() {
           <button className="bg-transparent font-semibold  flex items-center gap-2 mt-6 text-white">Check it Out{<GiTronArrow/>}</button>
         </div>  
       </div>
-      <div className="flex px-5 py-3 text-white border-2 rounded-3xl border-deep-orange-500 bg-deep-orange-700 bg-opacity-10 hover:hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer ">
+      <div className="flex px-5 py-3 text-white border-2 rounded-3xl border-deep-orange-500 bg-deep-orange-700 bg-opacity-10 hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer ">
         <div className="group flex flex-col items-center gap-4 mt-2 group-hover:text-white" >
           <h3 className="text-white text-lg font-semibold italic">Fat Loss</h3>
           {<GiSmallFire className=" text-deep-orange-500 text-5xl group-hover:text-white"/>}

@@ -2,8 +2,8 @@ import Video1 from "../../assets/male-cable-twisting-curl-front.mp4";
 import Video2 from "../../assets/male-cable-twisting-curl-side.mp4";
 export default function Exercise() {
   return (
-    <section className="p-6">
-      <div className="Card flex flex-col text-left p-20 w-full m-auto">
+    <section className="">
+      <div className="Card flex flex-col text-left p-10 w-3/4 m-auto">
         <div className="CardHeader bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 p-4 w-full rounded-2xl">
           <h1 className="text-4xl text-white text-left font-bold">
             {" "}
