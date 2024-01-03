@@ -13,7 +13,7 @@ export default function Navbar() {
         </div>
         {/* MENU ITEMS */}
         <div className="hidden md:flex space-x-6">
-          <Link to="#" className= "font-bold text-orange-600 hover:text-orange-400">WORKOUTS</Link>
+          <Link to="/workout" className= "font-bold text-orange-600 hover:text-orange-400">WORKOUTS</Link>
           <Link to="/login" className= "font-bold text-orange-600 hover:text-orange-400">ABOUT US</Link>
           <Link to="/login" className= "font-bold text-orange-600 hover:text-orange-400">LOG IN</Link>
           <Link to="/signup" className= "font-bold text-orange-600 hover:text-orange-400">SIGN UP</Link>

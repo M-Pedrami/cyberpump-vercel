@@ -1,6 +1,7 @@
 import "./App.css";
 import { Route, Routes, Link } from "react-router-dom";
 import Home from "./components/Home";
+import Workout from "./components/Exercise"
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
@@ -35,6 +36,7 @@ const [activeUser, setActiveUser] = useState(null)
         <Route path="/" element={<Home user={activeUser} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup onSignup={()=>getUser()} />} />
+        <Route path="/workout" element={<Workout/>} />
       </Routes>
       <ToastContainer />
     </>
