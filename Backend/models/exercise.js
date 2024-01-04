@@ -39,12 +39,8 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
   },
 
-  exerciseType: {
-    type: String,
-  },
-
   video: {
-    type: String,
+    type: [String],
   },
 
   thumbnail: {
