@@ -5,12 +5,13 @@ const Exercise = require("../models/exercise");
 const createWorkout = async (req, res, next) => {
   try {
     const {
-      body: { name, description, exercises, creator, thumbnail },
+      body: { name, description, exercises,level, creator, thumbnail },
     } = req;
     const newWorkout = await Workout.create({
       name,
       description,
       exercises,
+      level,
       creator,
       thumbnail,
     });

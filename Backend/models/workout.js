@@ -14,6 +14,11 @@ const workoutSchema = new mongoose.Schema({
       ref: 'Exercise',
     },
   ],
+  level: {
+    type: String,
+    required: true,
+    enum: ["Advanced", "Intermediate", "Beginner"],
+  },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
