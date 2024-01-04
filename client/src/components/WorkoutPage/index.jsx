@@ -3,7 +3,7 @@ import Exercise from "../Exercise";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 
-import getExercises from "../../utils/customrHooks";
+import {getExercises} from "../../utils/customrHooks";
 
 export default function WorkoutPage() {
   const [currentPage, setCurrentPage] = useState(1);
