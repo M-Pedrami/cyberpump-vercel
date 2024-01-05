@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Exercise from "../Exercise";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 
-import {getExercises} from "../../utils/customrHooks";
+import {getExercises, getWorkout} from "../../utils/customrHooks";
 
 export default function WorkoutPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesData, setExercisesData] = useState([]);
   const exercisesPerPage = 1;
+  const {id} = useParams();
 
   //getting the exercises from backend
   useEffect(() => {
-    getExercises()
+    getWorkout(id)
       .then((res) => {
         setExercisesData(res.exercises);
-        console.log("USEEFFECT", res.exercises);
+        console.log("USEEFFECT", res);
       })
       .catch((err) => console.log("USEEFFECT", err));
   }, []);
