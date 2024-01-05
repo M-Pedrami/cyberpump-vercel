@@ -18,7 +18,16 @@ const getWorkouts = async() =>{
   }
 }
 
-export  {getExercises, getWorkouts}
+const getWorkout = async(id)=>{
+  try {
+    const response = await axios.get(`http://localhost:3001/workout/${id}`);
+    console.log("getWorkout",response)
+    return response.data.data
+  } catch (error) {
+    console.log("getWorkout Catch", error)
+  }
+}
+export  {getExercises, getWorkouts, getWorkout}
 
 
 
