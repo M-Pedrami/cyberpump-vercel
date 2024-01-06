@@ -18,7 +18,7 @@ export default function ContentSection() {
       
     }}>
       <h1 className="text-white text-4xl font-extrabold text-center tracking-wide"><span className=" text-deep-orange-500">JUMP</span> <span className=" italic">RIGHT</span> IN</h1>
-      <div className="flex flex-col md:flex-row gap-4 mt-12 ">
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:flex-row gap-4 mt-12 ">
       <div className="flex px-5 py-3 text-white border-2 rounded-3xl border-deep-orange-500 bg-deep-orange-700 bg-opacity-10 hover:hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer  ">
         <div className="group flex flex-col items-center gap-4 mt-2 group-hover:text-white" >
           <h3 className="text-white text-lg font-semibold italic">Cardio Exercises</h3>
