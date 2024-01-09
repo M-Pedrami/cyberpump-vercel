@@ -58,7 +58,7 @@ const loginUser = asyncHander(async (req, res) => {
   }
   const user = await User.findOne({ email }).select("+password");
   if (user && (await bcrypt.compare(password, user.password))) {
-    const payload = { id: user._id, email: user.email, name: user.username };
+    const payload = { id: user._id, email: user.email, name: user.username, profilePic: user.avatar };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "300m",
     });
