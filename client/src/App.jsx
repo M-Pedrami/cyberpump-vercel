@@ -3,6 +3,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import Home from "./components/Home";
 import WorkoutGrid from "./components/WorkoutGrid"
 import WorkoutPage from "./components/WorkoutPage"
+import Profile from "./components/Profile"
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
@@ -18,7 +19,7 @@ const [activeUser, setActiveUser] = useState(null)
         withCredentials: true,
       });
       setActiveUser(response.data)
-      console.log("getUSER AXIOS RESPONSE", activeUser);
+      console.log("getUSER AXIOS RESPONSE", response);
     } catch (error) {
       console.log("ERROR GETUSER APP.JSX", error);
     }
@@ -35,10 +36,11 @@ const [activeUser, setActiveUser] = useState(null)
       <Navbar />
       <Routes>
         <Route path="/" element={<Home user={activeUser} />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login onSignup={()=>getUser()} />} />
         <Route path="/signup" element={<Signup onSignup={()=>getUser()} />} />
         <Route path="/workout" element={<WorkoutGrid/>} />
         <Route path="/workout/:id" element= {<WorkoutPage/>}/>
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
       <ToastContainer />
     </>

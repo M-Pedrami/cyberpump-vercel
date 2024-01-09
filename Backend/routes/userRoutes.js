@@ -7,7 +7,7 @@ const {
 } = require("../controllers/userControllers");
 const authenticate = require("../middlewares/authMiddleware")
 router.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}`);
+  console.log(`Incoming request: ${req.method} ${req.url} ${req.body}`);
   next();
 });
 
