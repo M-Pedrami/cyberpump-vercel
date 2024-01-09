@@ -4,8 +4,10 @@ const {
   registerUser,
   loginUser,
   getProfile,
+  updateProfile,
 } = require("../controllers/userControllers");
 const authenticate = require("../middlewares/authMiddleware")
+const upload = require("../middlewares/uploadMedia");
 router.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url} ${req.body}`);
   next();
@@ -14,6 +16,7 @@ router.use((req, res, next) => {
 router.route("/signup").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/profile").get(authenticate, getProfile);
+router.route("/updateprofile").post(authenticate,upload.single("avatar"), updateProfile)
 
 module.exports = router;
 
