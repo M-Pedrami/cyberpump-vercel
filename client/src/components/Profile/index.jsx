@@ -18,14 +18,14 @@ export default function Profile() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col text-white gap-3 bg-deep-orange-700 bg-opacity-10 p-3 ">
+        <div className="flex flex-col text-white gap-3 bg-deep-orange-800 bg-opacity-20 p-3 rounded-b-xl ">
           <div>
             <p>Personal Info</p>
             <p className="text-xs text-gray-500">Login Credentials</p>
           </div>
 
-          <p>Name : Jane Doe</p>
-          <p>Email : Jane@doe.com</p>
+          <p><span className="font-bold italic">Name</span> : Jane Doe</p>
+          <p><span className="font-bold italic">Email</span> : Jane@doe.com</p>
           <button className="border border-deep-orange-500 text-sm font-bold w-fit p-2 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-20 ">
             Change Password
           </button>
