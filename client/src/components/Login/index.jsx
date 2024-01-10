@@ -11,7 +11,7 @@ export default function Login({onSignup}) {
  
 
   const notify = () => {
-    toast.success("Welcome Back", {
+    toast.success(`Welcome Back`, {
       theme: "dark",
     });
   };
