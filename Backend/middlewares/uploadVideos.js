@@ -11,9 +11,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "Cyberpump", // Change the folder name to a general one
-    allowed_formats: ["jpg", "jpeg", "png", "mp4", "avi", "mov"], // Add both image and video formats
-    resource_type: "auto", // Automatically determine the resource type
+    folder: "exercisevideos", // Change the folder name for videos
+    allowed_formats: ["mp4", "avi", "mov"], // Add video formats here
+    resource_type: "video", // Specify the resource type as video
     transformation: [{ width: 500, height: 500, crop: "limit" }],
   },
 });

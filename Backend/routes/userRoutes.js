@@ -5,6 +5,7 @@ const {
   loginUser,
   getProfile,
   updateProfile,
+  logoutUser
 } = require("../controllers/userControllers");
 const authenticate = require("../middlewares/authMiddleware")
 const upload = require("../middlewares/uploadMedia");
@@ -17,6 +18,7 @@ router.route("/signup").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/profile").get(authenticate, getProfile);
 router.route("/updateprofile").post(authenticate,upload.single("avatar"), updateProfile)
+router.route("/logout").post(authenticate, logoutUser)
 
 module.exports = router;
 

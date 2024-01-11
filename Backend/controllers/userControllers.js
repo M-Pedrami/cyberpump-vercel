@@ -58,13 +58,18 @@ const loginUser = asyncHander(async (req, res) => {
   }
   const user = await User.findOne({ email }).select("+password");
   if (user && (await bcrypt.compare(password, user.password))) {
-    const payload = { id: user._id, email: user.email, name: user.username, profilePic: user.avatar };
+    const payload = {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+      avatar: user.avatar,
+    };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "300m",
     });
     res
       .cookie("access_token", token, { httpOnly: true, maxAge: "3600000" })
-      .send("You are logged in");
+      .json(payload);
   } else {
     res.status(400);
     throw new Error("Invalid credentials");
@@ -72,35 +77,48 @@ const loginUser = asyncHander(async (req, res) => {
 });
 
 const getProfile = asyncHander(async (req, res) => {
-  const user = req.user;
-  if (!user) {
-    res.status(403);
-    throw new Error("Access not Authorized");
-  }
+  const { id } = req.user;
+  const user = await User.findById(id);
+
   res.send(user);
 });
 
 const updateProfile = asyncHander(async (req, res) => {
+  console.log("HELLLLLLLLOOOOOOOÖÖÖÖÖÖÖ");
   const {
     //get the path from the file property created by multer middleware
-    file : {path}
+    file: { path },
   } = req;
   //get the user from the req.user created by authenticate middleware
-  const user = req.user
-  console.log(path)
-  if (!user) {
+  const user = req.user;
+  console.log(path);
+  /* if (!user) {
     res.status(403);
     throw new Error("Access not Authorized");
-  }
+  } */
 
   const updatedUser = await User.findByIdAndUpdate(
     //using the user from req.user to find the user to be update in the database
     user.id,
-    { $set: { avatar : path } },
+    { $set: { avatar: path } },
     { new: true }
   );
-  console.log(user.id)
-  res.status(200).json({ message: "Profile update Successfully" });
+  console.log(user.id);
+  res
+    .status(200)
+    .json({ message: "Profile update Successfully", data: updatedUser });
 });
 
-module.exports = { registerUser, getUsers, loginUser, getProfile, updateProfile };
+const logoutUser = (req, res) => {
+  res.clearCookie("access_token");
+  res.status(200).json({ message: "User Successfully Logged out" });
+};
+
+module.exports = {
+  registerUser,
+  getUsers,
+  loginUser,
+  getProfile,
+  updateProfile,
+  logoutUser,
+};
