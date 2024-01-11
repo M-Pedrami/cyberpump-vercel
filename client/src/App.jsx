@@ -11,6 +11,7 @@ import { useUser } from "./utils/UserContext";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AddExercise from "./components/AddExercise";
 
 function App() {
   const {activeUser, setActiveUser} = useUser();
@@ -40,6 +41,8 @@ function App() {
         <Route path="/workout" element={<WorkoutGrid />} />
         <Route path="/workout/:id" element={<WorkoutPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/addexercise" element={<AddExercise />} />
+
       </Routes>
       <ToastContainer />
     </>

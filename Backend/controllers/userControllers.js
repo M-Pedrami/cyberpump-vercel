@@ -69,7 +69,7 @@ const loginUser = asyncHander(async (req, res) => {
     });
     res
       .cookie("access_token", token, { httpOnly: true, maxAge: "3600000" })
-      .json(pay);
+      .json(payload);
   } else {
     res.status(400);
     throw new Error("Invalid credentials");

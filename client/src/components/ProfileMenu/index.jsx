@@ -21,8 +21,8 @@ import { useEffect } from "react";
 export default function ProfileMenu() {
   const { activeUser, setActiveUser } = useUser();
   const navigate = useNavigate();
-  const notify = () => {
-    toast.success("Logout Successfull, See You Soon!", { theme: "dark" });
+  const notify = (message) => {
+    toast.success(message, { theme: "dark" });
   };
   const handleLogout = async () => {
     try {
@@ -31,11 +31,11 @@ export default function ProfileMenu() {
         {},
         { withCredentials: true }
       );
-      if (response.status === 200) {
+      
         setActiveUser(null);
-        notify();
+        notify(`See You Soon Dear ${activeUser.username}`);
         navigate("/");
-      }
+      
     } catch (error) {
       console.log("handleLogOut", error);
     }
@@ -56,8 +56,8 @@ export default function ProfileMenu() {
             alt="avatar"
             className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
             src={
-              activeUser && activeUser.profilePic
-                ? activeUser.profilePic
+              activeUser && activeUser.avatar
+                ? activeUser.avatar
                 : UserPhoto
             }
           />
