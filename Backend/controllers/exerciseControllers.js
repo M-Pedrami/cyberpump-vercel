@@ -13,11 +13,14 @@ const createExercise = async (req, res, next) => {
         instructions,
         targetMuscle,
         exerciseType,
-        video,
         thumbnail,
       },
-      user: {id: creator},
+      user: { id: creator },
+     videos
     } = req;
+
+  
+    
     const newExercise = await Exercise.create({
       name,
       description,
@@ -28,7 +31,7 @@ const createExercise = async (req, res, next) => {
       instructions,
       targetMuscle,
       exerciseType,
-      video,
+      video: videos,
       thumbnail,
     });
     res
@@ -42,7 +45,7 @@ const createExercise = async (req, res, next) => {
 const getExercises = async (req, res, next) => {
   try {
     const exercises = await Exercise.find().populate("creator");
-    res.send({exercises});
+    res.send({ exercises });
     //changed response to exercises and the send argument to an object that includes the excercises the key/value pair within this object {exercises} = {exercises: excercises} because the key and the value have the same name
   } catch (error) {
     next(error);

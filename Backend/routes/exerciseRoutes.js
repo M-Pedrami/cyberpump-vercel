@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const {createExercise, getExercises} = require("../controllers/exerciseControllers")
 const authenticate = require("../middlewares/authMiddleware") 
-const uploadMedia = require("../middlewares/uploadMedia")
-const testUpload = require("../controllers/testUpload")
+const {upload, cloudinaryUpload} = require("../middlewares/uploadVideos")
 
-router.route('/').post(authenticate, createExercise).get(getExercises)
+router.route('/').post(authenticate,upload.array("video"),cloudinaryUpload, createExercise).get(getExercises)
 
 
 module.exports = router
