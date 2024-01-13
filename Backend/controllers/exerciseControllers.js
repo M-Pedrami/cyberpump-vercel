@@ -52,4 +52,39 @@ const getExercises = async (req, res, next) => {
   }
 };
 
-module.exports = { createExercise, getExercises };
+const filteredExercises = async (req, res, next) => {
+  try {
+    const { targetMuscle, level, equipment } = req.query;
+    let filter = {};
+
+    if (targetMuscle) {
+      filter.targetMuscle = { $regex: new RegExp(targetMuscle, 'i') };
+    }
+
+    if (level) {
+      filter.level = { $regex: new RegExp(level, 'i') };
+    }
+    if (equipment) {
+      filter.equipment = { $regex: new RegExp(equipment, 'i') };
+    }
+
+    if (Object.keys(filter).length === 0) {
+      return res.status(400).json({ message: "Specify at least one filter parameter (targetMuscle or level)." });
+    }
+
+    const exercises = await Exercise.find(filter);
+
+    if (exercises.length === 0) {
+      return res.status(404).json({ message: "No exercises found for the specified filters." });
+    }
+
+    res.status(200).json({ exercises });
+  } catch (error) {
+    console.log("CATCH/filteredExercises", error);
+    next(error);
+  }
+};
+
+module.exports = { createExercise, getExercises, filteredExercises };
+
+
