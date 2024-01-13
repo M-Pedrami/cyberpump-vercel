@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { Input, Button } from "@material-tailwind/react";
+import { Input, Button, Textarea } from "@material-tailwind/react";
+import { CiCircleRemove } from "react-icons/ci";
 
-export default function Instructions({setExercise}) {
+export default function Instructions({ setExercise }) {
   const [instructions, setInstructions] = useState([""]);
 
-  const handleInstructions = () =>{
-    setExercise((prevExercise)=>({...prevExercise, instructions: instructions}))
-  }
+  const handleInstructions = () => {
+    setExercise((prevExercise) => ({
+      ...prevExercise,
+      instructions: instructions.map(step => step.trim()), // Trim each step
+    }));
+    console.log("Finalized Instructions:", instructions);
+    setInstructions([""]);
+  };
 
   const handleAddStep = () => {
     setInstructions((prevInstructions) => [...prevInstructions, ""]);
@@ -26,23 +32,38 @@ export default function Instructions({setExercise}) {
       newInstructions.splice(index, 1);
       return newInstructions;
     });
+    console.log("::::::::::::::::::::::::::::",instructions)
   };
 
   return (
     <div>
       {instructions.map((instruction, index) => (
-        <div key={index} className="mb-4">
-          <Input
-            type="text"
-            label={`Step ${index + 1}`}
-            value={instruction}
-            onChange={(e) => handleInputChange(index, e.target.value)}
-          />
-          <Button onClick={() => handleRemoveStep(index)}>Remove Step</Button>
+        <div key={index} className="">
+          <div className="steps flex items-center">
+            <Textarea
+              type="text"
+              label={`Step ${index + 1}`}
+              value={instruction}
+              onChange={(e) => handleInputChange(index, e.target.value)}
+              className="w-[600px] "
+            />
+            <Button
+              onClick={() => handleRemoveStep(index)}
+              className="bg-transparent shadow-none hover:shadow-none hover:text-3xl translate-all duration-300"
+            >
+              <CiCircleRemove className="text-red-500 text-4xl" />
+            </Button>
+          </div>
         </div>
       ))}
-      <Button onClick={handleAddStep}>Add Next Step</Button>
-      <Button onClick={handleInstructions}>Finalize Instructions</Button>
+      <div className="flex flex-col gap-2">
+        <Button className="w-fit" onClick={handleAddStep}>
+          Add Next Step
+        </Button>
+        <Button className="w-fit" onClick={handleInstructions}>
+          Finalize Instructions
+        </Button>
+      </div>
     </div>
   );
 }

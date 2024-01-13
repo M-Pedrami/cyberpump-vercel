@@ -3,11 +3,16 @@ import ExerciseInfo from "./ExerciseInfo";
 import ExerciseMedia from "./ExerciseMedia";
 import { Button } from "@material-tailwind/react";
 import Instructions from "./Instructions";
+import { GrCaretPrevious } from "react-icons/gr";
+import { GrCaretNext } from "react-icons/gr";
 
-
-export default function Form({exercise, setExercise, handleClick}) {
+export default function Form({ exercise, setExercise, handleClick, isValid }) {
   const [step, setStep] = useState(0);
-  const headers = ["Enter Exercise Info","Enter Exercise Instructions", "Enter Exercise Media"];
+  const headers = [
+    " Exercise Information",
+    " Exercise Instructions",
+    "Enter Exercise Media",
+  ];
   const handlePrev = () => {
     setStep((currStep) => currStep - 1);
   };
@@ -15,27 +20,76 @@ export default function Form({exercise, setExercise, handleClick}) {
     setStep((currStep) => currStep + 1);
   };
 
-  const PageDisplay = () => (step === 0 ? <ExerciseInfo exercise={exercise} setExercise = {setExercise} /> : step === 1 ? <Instructions exercise={exercise} setExercise = {setExercise} /> : <ExerciseMedia exercise={exercise} setExercise = {setExercise}/>);
+  const PageDisplay = () =>
+    step === 0 ? (
+      <ExerciseInfo exercise={exercise} setExercise={setExercise} />
+    ) : step === 1 ? (
+      <Instructions exercise={exercise} setExercise={setExercise} />
+    ) : (
+      <ExerciseMedia exercise={exercise} setExercise={setExercise} />
+    );
+
+  
 
   return (
-    <section className="p-6 bg-white">
+    <section className="p-6 ">
       <div className="progressbar"></div>
-      <div className="form-container">
-        <div className="header">
-          <h1 className=" text-3xl text-black">{headers[step]}</h1>
+      <div className="form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
+        <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
+          <h1 className=" text-2xl font-bold italic ">{headers[step]}</h1>
+          <div className="text-left text-xs">
+            {" "}
+            {step === 0 ? (
+              <p>General Information about your Exercise</p>
+            ) : step === 1 ? (
+              <p>
+                Enter The Instructions{" "}
+                <span className="font-bold italic">Step by Step.</span> Once
+                finished adding all the steps click on{" "}
+                <span className="font-bold italic">Finalize Instructions</span>
+              </p>
+            ) : (
+              <>
+              
+              <p>
+                Upload Videos for the Execise.{" "}
+                <span className="font-bold italic">Maximum of 2 videos</span>{" "}
+                are allowed{" "}
+               
+              </p>
+               <p className="text-xs italic text-gray-600">
+               Allowed Formats : MP4, AVI, Webp, FLV
+             </p>
+              </>
+            )}{" "}
+          </div>
         </div>
-        <div className="body">{PageDisplay()}</div>
-        <div className="foot">
-          <button onClick={handlePrev} disabled={step === 0}>
-            Prev
+        <div className="body mb-3 w-fit">{PageDisplay()}</div>
+        <Button
+          style={{ display: step === 2 ? "block" : "none" }}
+          type="submit"
+          onClick={handleClick}
+          className="text-center "
+/*            disabled={!isValid}
+ */         >
+          Add Exercise
+        </Button>
+        <div className="w-[100px] m-auto ">
+          <button
+            onClick={handlePrev}
+            disabled={step === 0}
+            className=" bg-transparent shadow-none hover:shadow-none disabled:cursor-not-allowed  "
+          >
+            <GrCaretPrevious className="text-4xl  text-deep-orange-700  transition-all duration-500 hover:text-opacity-50 " />
           </button>
-          <button onClick={handleNext} disabled={step === 2}>
-            Next
+          <button
+            onClick={handleNext}
+            disabled={step === 2}
+              
+            className="bg-transparent shadow-none hover:shadow-none disabled:cursor-not-allowed "
+          >
+            <GrCaretNext className="text-4xl  text-deep-orange-700 hover:text-4xl transition-all duration-500 hover:text-opacity-50" />
           </button>
-          <Button style={{ display: step === 2 ? "block" : "none" }} type="submit" onClick={handleClick}>
-  Add Exercise
-</Button>
-
         </div>
       </div>
     </section>

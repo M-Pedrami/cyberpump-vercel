@@ -1,8 +1,7 @@
 import { Input } from "@material-tailwind/react";
 export default function ExerciseMedia({ exercise,setExercise }) {
   return (
-    <div>
-      <h1 className="text-2xl text-deep-orange-500"> Upload Exercise Media</h1>
+    <div >
       <Input
         type="file"
         size="lg"

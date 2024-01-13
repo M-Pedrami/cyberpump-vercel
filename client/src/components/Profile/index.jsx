@@ -67,7 +67,7 @@ export default function Profile() {
           </div>
 
           <p>
-            <span className="font-bold italic">Name</span> : {activeUser?.name}
+            <span className="font-bold italic">Name</span> : {activeUser?.username}
           </p>
           <p>
             <span className="font-bold italic">Email</span> :{" "}
