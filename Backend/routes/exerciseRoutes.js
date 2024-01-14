@@ -4,6 +4,12 @@ const {createExercise, getExercises,filteredExercises} = require("../controllers
 const authenticate = require("../middlewares/authMiddleware") 
 const {upload, cloudinaryUpload} = require("../middlewares/uploadVideos")
 
+//Logger
+router.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`);
+  next();
+});
+
 router.route('/').post(authenticate,upload.array("video"),cloudinaryUpload, createExercise).get(getExercises)
 
 //filtered

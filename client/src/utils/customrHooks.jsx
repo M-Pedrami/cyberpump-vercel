@@ -27,7 +27,20 @@ const getWorkout = async(id)=>{
     console.log("getWorkout Catch", error)
   }
 }
-export  {getExercises, getWorkouts, getWorkout}
+
+const getFilteredExercises = async (filters) => {
+  try {
+    const exercises = await axios.get("http://localhost:3001/exercise/filtered", {
+      params: filters,
+    });
+    console.log("FROM FETCH HOOK",exercises);
+    return exercises;
+  } catch (error) {
+    console.log("getExercises Catch", error);
+  }
+};
+
+export  {getExercises, getWorkouts, getWorkout, getFilteredExercises}
 
 
 

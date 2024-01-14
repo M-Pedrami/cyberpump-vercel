@@ -17,10 +17,12 @@ export default function Navbar() {
         {/* MENU ITEMS */}
         <div className="hidden md:flex space-x-6">
           <Link to="/workout" className= "font-bold text-orange-600 hover:text-orange-400">WORKOUTS</Link>
+          <Link to="/directory" className= "font-bold text-orange-600 hover:text-orange-400">DIRECTORY</Link>
           <Link to="/login" className= "font-bold text-orange-600 hover:text-orange-400">ABOUT US</Link>
           <Link to={activeUser ? "/" : "/login"} className= "font-bold text-orange-600 hover:text-orange-400">{activeUser ? "EXERCISES" : "LOG IN"}</Link>
           <Link to="/signup" className= "font-bold text-orange-600 hover:text-orange-400">{activeUser ? "TOOLS" : "SIGN UP"}</Link>
           <Link to="/addexercise" className= "font-bold text-orange-600 hover:text-orange-400">ADD EXERCISE</Link>
+          
         </div>
         {/* Profile Menu */}
         <ProfileMenu/>

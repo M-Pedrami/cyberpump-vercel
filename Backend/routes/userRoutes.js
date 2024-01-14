@@ -10,7 +10,7 @@ const {
 const authenticate = require("../middlewares/authMiddleware")
 const upload = require("../middlewares/uploadMedia");
 router.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url} ${req.body}`);
+  console.log(`Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`);
   next();
 });
 

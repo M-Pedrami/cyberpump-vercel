@@ -16,11 +16,9 @@ const createExercise = async (req, res, next) => {
         thumbnail,
       },
       user: { id: creator },
-     videos
+      videos,
     } = req;
 
-  
-    
     const newExercise = await Exercise.create({
       name,
       description,
@@ -58,24 +56,39 @@ const filteredExercises = async (req, res, next) => {
     let filter = {};
 
     if (targetMuscle) {
-      filter.targetMuscle = { $regex: new RegExp(targetMuscle, 'i') };
+      // Check if targetMuscle is a comma-separated string
+      const targetMusclesArray = targetMuscle.toString().split(',');
+
+      // Use $in operator to match exercises with any of the target muscles
+      filter.targetMuscle = { $in: targetMusclesArray.map(muscle => new RegExp(muscle, 'i')) };
     }
 
     if (level) {
-      filter.level = { $regex: new RegExp(level, 'i') };
+      // Check if level is a comma-separated string
+      const levelsArray = level.toString().split(',');
+
+      // Use $in operator to match exercises with any of the target muscles
+      filter.level = { $in: levelsArray.map(level => new RegExp(level, 'i')) };
     }
     if (equipment) {
-      filter.equipment = { $regex: new RegExp(equipment, 'i') };
+      // Check if equipment is a comma-separated string
+      const equipmentsArray = equipment.toString().split(',');
+
+      // Use $in operator to match exercises with any of the target muscles
+      filter.equipment = { $in: equipmentsArray.map(equipment => new RegExp(equipment, 'i')) };
     }
 
     if (Object.keys(filter).length === 0) {
-      return res.status(400).json({ message: "Specify at least one filter parameter (targetMuscle or level)." });
+      const allExercises = await Exercise.find();
+      return res.status(200).json({ exercises: allExercises });
     }
-
+    console.log(filter);
     const exercises = await Exercise.find(filter);
 
     if (exercises.length === 0) {
-      return res.status(404).json({ message: "No exercises found for the specified filters." });
+      return res
+        .status(404)
+        .json({ message: "No exercises found for the specified filters." });
     }
 
     res.status(200).json({ exercises });
@@ -86,5 +99,3 @@ const filteredExercises = async (req, res, next) => {
 };
 
 module.exports = { createExercise, getExercises, filteredExercises };
-
-
