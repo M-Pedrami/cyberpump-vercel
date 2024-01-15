@@ -63,6 +63,7 @@ const loginUser = asyncHander(async (req, res) => {
       email: user.email,
       username: user.username,
       avatar: user.avatar,
+      role: user.role
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "300m",

@@ -19,10 +19,9 @@ export default function Login({ onSignup }) {
   const { activeUser, setActiveUser } = useUser();
 
   const notify = (message) => {
-    
-      toast.success(message, {
-        theme: "dark",
-      });
+    toast.success(message, {
+      theme: "dark",
+    });
   };
 
   const [email, setEmail] = useState("");
@@ -54,10 +53,12 @@ export default function Login({ onSignup }) {
       // Clear input fields after successful submission
       setEmail("");
       setPassword("");
-      setActiveUser(response.data)
+      setActiveUser(response.data);
       // Display success toast
       notify(`Welcome Back ${response.data.username}`);
-      navigate("/");
+      response.data && response.data.role === "admin"
+        ? navigate("/dashboard/users")
+        : navigate("/");
       onSignup();
     } catch (error) {
       setDisplayError(error.response.data.message);
