@@ -8,6 +8,8 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getFilteredExercises } from "../../utils/customrHooks";
+import { MdLabelImportantOutline } from "react-icons/md";
+
 
 export default function AddWorkout() {
   const [workout, setWorkout] = useState({
@@ -71,9 +73,18 @@ export default function AddWorkout() {
   };
 
   return (
-    <section className="p-6 bg-white text-black">
-      <h1 className="text-center text-3xl text-white">ADD WORKOUT</h1>
-      <div className="Card flex flex-col gap-4 m-auto w-[26rem]">
+    <section className="p-6">
+      
+      <div className="card form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
+
+        <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
+          <h1 className="text-2xl font-bold italic">Add Workout</h1>
+          <p className="text-xs italic"> Enter Information for the Workout Plan</p>
+          
+
+        </div>
+
+      <div className=" flex flex-col gap-4 m-auto w-[26rem]">
         <Input
           type="text"
           size="lg"
@@ -145,6 +156,10 @@ export default function AddWorkout() {
             }));
           }}
         />
+        <div className="flex flex-wrap">
+            <MdLabelImportantOutline className="text-deep-orange-500"/>
+            <p className="text-xs italic">  Select an Exercise From the Menu,  Add Exercise to Add it to the Workout</p>
+          </div>
         <div className="selectExercises flex items-center gap-4 ">
           {!!exercises.length && (
             <Select
@@ -168,13 +183,15 @@ export default function AddWorkout() {
             Add Exercise
           </Button>
         </div>
+        
         <Button
           type="button"
           onClick={handleClick}
-          className=" mt-3 w-52 m-auto"
+          className=" mt-3 w-52"
         >
           Add Workout
         </Button>
+      </div>
       </div>
     </section>
   );

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button, Textarea } from "@material-tailwind/react";
 import { CiCircleRemove } from "react-icons/ci";
 
 export default function Instructions({ setExercise }) {
   const [instructions, setInstructions] = useState([""]);
 
-  const handleInstructions = () => {
-    setExercise((prevExercise) => ({
-      ...prevExercise,
-      instructions: instructions.map(step => step.trim()), // Trim each step
-    }));
-    console.log("Finalized Instructions:", instructions);
-    setInstructions([""]);
-  };
+  useEffect(() => {
+    setExercise((prevExercise) => {
+      return {
+        ...prevExercise,
+        instructions: instructions.map((step) => step.trim()), // Trim each step
+      };
+    });
+  }, [instructions]);
 
   const handleAddStep = () => {
     setInstructions((prevInstructions) => [...prevInstructions, ""]);
@@ -32,7 +32,6 @@ export default function Instructions({ setExercise }) {
       newInstructions.splice(index, 1);
       return newInstructions;
     });
-    console.log("::::::::::::::::::::::::::::",instructions)
   };
 
   return (
@@ -59,9 +58,6 @@ export default function Instructions({ setExercise }) {
       <div className="flex flex-col gap-2">
         <Button className="w-fit" onClick={handleAddStep}>
           Add Next Step
-        </Button>
-        <Button className="w-fit" onClick={handleInstructions}>
-          Finalize Instructions
         </Button>
       </div>
     </div>

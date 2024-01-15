@@ -1,7 +1,7 @@
 import { Input } from "@material-tailwind/react";
 export default function ExerciseMedia({ exercise,setExercise }) {
   return (
-    <div >
+    <div className="" >
       <Input
         type="file"
         size="lg"
@@ -9,7 +9,6 @@ export default function ExerciseMedia({ exercise,setExercise }) {
         className="bg-transparent text-black"
         onChange={(e) => {
           const files = e.target.files;
-          console.log(":::::::::::::::::",files)
           setExercise((prevExercise) =>({
             ...prevExercise, video: files
 

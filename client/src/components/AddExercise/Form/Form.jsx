@@ -65,31 +65,22 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
           </div>
         </div>
         <div className="body mb-3 w-fit">{PageDisplay()}</div>
-        <Button
-          style={{ display: step === 2 ? "block" : "none" }}
-          type="submit"
-          onClick={handleClick}
-          className="text-center "
-/*            disabled={!isValid}
- */         >
-          Add Exercise
-        </Button>
-        <div className="w-[100px] m-auto ">
-          <button
+        
+        <div className="w-1/2 flex gap-2 content-center ">
+          <Button
             onClick={handlePrev}
             disabled={step === 0}
-            className=" bg-transparent shadow-none hover:shadow-none disabled:cursor-not-allowed  "
+            className="disabled:cursor-not-allowed  "
           >
-            <GrCaretPrevious className="text-4xl  text-deep-orange-700  transition-all duration-500 hover:text-opacity-50 " />
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={step === 2}
+           Back
+          </Button>
+          <Button
+            onClick={step===2 ? handleClick:handleNext}
               
-            className="bg-transparent shadow-none hover:shadow-none disabled:cursor-not-allowed "
+            className="disabled:cursor-not-allowed "
           >
-            <GrCaretNext className="text-4xl  text-deep-orange-700 hover:text-4xl transition-all duration-500 hover:text-opacity-50" />
-          </button>
+            {step===2 ? "Submit":"Next"}
+          </Button>
         </div>
       </div>
     </section>

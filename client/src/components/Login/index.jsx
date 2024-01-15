@@ -50,14 +50,11 @@ export default function Login({ onSignup }) {
           withCredentials: true,
         }
       );
-      console.log("Response from server:", response);
 
-      console.log("FROM Login COMPONENT LINE 44", response);
       // Clear input fields after successful submission
       setEmail("");
       setPassword("");
       setActiveUser(response.data)
-      console.log("HELOOOOOOOOOOOOOOOOOOO",response.data)
       // Display success toast
       notify(`Welcome Back ${response.data.username}`);
       navigate("/");
