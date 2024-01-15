@@ -6,15 +6,21 @@ const Exercise = require("../models/exercise");
 const createWorkout = async (req, res, next) => {
   try {
     const {
-      body: { name, description, exercises, level, creator, thumbnail },
+      body: { name, description, exercises, level, category, createdFor },
+      user: { id: creator },
+      file: {path}
     } = req;
+
+    
     const newWorkout = await Workout.create({
       name,
       description,
       exercises,
       level,
+      category,
       creator,
-      thumbnail,
+      thumbnail: path,
+      createdFor
     });
     res.status(201).json({ message: "new workout created", data: newWorkout });
   } catch (error) {
@@ -47,4 +53,27 @@ const getWorkouts = async (req, res, next) => {
   }
 };
 
-module.exports = { createWorkout, getWorkouts, getWorkout };
+const deleteWorkout = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+
+    const deletedWorkout = await Workout.findByIdAndDelete(id);
+
+    if (!deletedWorkout) {
+      res.status(404);
+      throw new Error("Workout not found");
+    }
+
+    res.status(200).json({
+      message: "Workout deleted successfully",
+      data: deletedWorkout,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+module.exports = { createWorkout, getWorkouts, getWorkout, deleteWorkout };

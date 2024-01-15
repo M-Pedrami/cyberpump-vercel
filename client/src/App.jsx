@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AddExercise from "./components/AddExercise";
 import ExerciseDirectory from "./components/ExerciseDirectory";
+import AddWorkout from "./components/AddWorkout";
 
 function App() {
-  const {activeUser, setActiveUser} = useUser();
+  const { activeUser, setActiveUser } = useUser();
   const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:3001/user/profile", {
@@ -43,8 +44,8 @@ function App() {
         <Route path="/workout/:id" element={<WorkoutPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/addexercise" element={<AddExercise />} />
+        <Route path="/addworkout" element={<AddWorkout />} />
         <Route path="/directory" element={<ExerciseDirectory />} />
-
       </Routes>
       <ToastContainer />
     </>

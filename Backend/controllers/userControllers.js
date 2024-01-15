@@ -84,7 +84,6 @@ const getProfile = asyncHander(async (req, res) => {
 });
 
 const updateProfile = asyncHander(async (req, res) => {
-  console.log("HELLLLLLLLOOOOOOOÖÖÖÖÖÖÖ");
   const {
     //get the path from the file property created by multer middleware
     file: { path },

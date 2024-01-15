@@ -40,7 +40,17 @@ const getFilteredExercises = async (filters) => {
   }
 };
 
-export  {getExercises, getWorkouts, getWorkout, getFilteredExercises}
+const deleteWorkout = async (id) =>{
+  try {
+    const response = axios.delete(`http://localhost:3001/workout/${id}`,
+    { withCredentials: true })
+    return response.data.data
+  } catch (error) {
+    console.log("deleteWorkout customHook", error)
+  }
+}
+
+export  {getExercises, getWorkouts, getWorkout, getFilteredExercises, deleteWorkout}
 
 
 

@@ -22,6 +22,7 @@ export default function Navbar() {
           <Link to={activeUser ? "/" : "/login"} className= "font-bold text-orange-600 hover:text-orange-400">{activeUser ? "EXERCISES" : "LOG IN"}</Link>
           <Link to="/signup" className= "font-bold text-orange-600 hover:text-orange-400">{activeUser ? "TOOLS" : "SIGN UP"}</Link>
           <Link to="/addexercise" className= "font-bold text-orange-600 hover:text-orange-400">ADD EXERCISE</Link>
+          <Link to="/addworkout" className= "font-bold text-orange-600 hover:text-orange-400">ADD WORKOUT</Link>
           
         </div>
         {/* Profile Menu */}
