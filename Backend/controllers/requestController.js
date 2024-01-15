@@ -1,18 +1,14 @@
 const asyncHander = require("express-async-handler");
 const Request = require("../models/requests");
+const User = require("../models/user")
 
 const postRequest = asyncHander(async (req, res) => {
   const {
-    body: { height, weight, age, goal, request },
+    body: { user, height, weight, age, goal, request },
   } = req;
-  const id = req.user.id;
 
-  if (!id) {
-    res.status(401);
-    throw new Error({ message: "No Acces Token-NOT AUTHORIZED" });
-  }
   const newRequest = await Request.create({
-    user: id,
+    user,
     height,
     weight,
     age,
@@ -24,8 +20,15 @@ const postRequest = asyncHander(async (req, res) => {
     .json({ message: "Request Successfully Sent", data: newRequest });
 });
 
+const getRequests = asyncHander(async (req, res) => {
+  const response = await Request.find().populate("user");
+  res.status(200).json(response);
+});
+
 const getRequest = asyncHander(async (req, res) => {
-  const id = req.user.id;
+  const {
+    Body: { id },
+  } = req;
   if (!id) {
     res.status(401);
     throw new Error({ message: "Access Denied- No Token" });
@@ -34,4 +37,4 @@ const getRequest = asyncHander(async (req, res) => {
   res.status(201).json({ message: "Request Sent Succesfully", data: found });
 });
 
-module.exports = {postRequest, getRequest};
+module.exports = { postRequest, getRequest, getRequests };

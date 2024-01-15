@@ -15,6 +15,7 @@ import AddExercise from "./components/AddExercise";
 import ExerciseDirectory from "./components/ExerciseDirectory";
 import AddWorkout from "./components/AddWorkout";
 import AdminDashboard from "./components/AdminDashboard"
+import RequestPage from "./components/RequestPage"
 
 function App() {
   const { activeUser, setActiveUser } = useUser();
@@ -47,7 +48,8 @@ function App() {
         <Route path="/addexercise" element={<AddExercise />} />
         <Route path="/addworkout" element={<AddWorkout />} />
         <Route path="/directory" element={<ExerciseDirectory />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard/users" element={<AdminDashboard />} />
+        <Route path="/dashboard/requests" element={<RequestPage />} />
       </Routes>
       <ToastContainer />
     </>

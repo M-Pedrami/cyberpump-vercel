@@ -1,5 +1,7 @@
 import axios from "axios";
 
+//Exercises
+
 const getExercises = async () => {
   try {
     const exercises = await axios.get("http://localhost:3001/exercise");
@@ -8,6 +10,23 @@ const getExercises = async () => {
     console.log("getExercises Catch", error);
   }
 };
+
+const getFilteredExercises = async (filters) => {
+  try {
+    const exercises = await axios.get(
+      "http://localhost:3001/exercise/filtered",
+      {
+        params: filters,
+      }
+    );
+    console.log("FROM FETCH HOOK", exercises);
+    return exercises;
+  } catch (error) {
+    console.log("getExercises Catch", error);
+  }
+};
+
+//Workouts
 
 const getWorkouts = async () => {
   try {
@@ -28,20 +47,7 @@ const getWorkout = async (id) => {
   }
 };
 
-const getFilteredExercises = async (filters) => {
-  try {
-    const exercises = await axios.get(
-      "http://localhost:3001/exercise/filtered",
-      {
-        params: filters,
-      }
-    );
-    console.log("FROM FETCH HOOK", exercises);
-    return exercises;
-  } catch (error) {
-    console.log("getExercises Catch", error);
-  }
-};
+
 
 const deleteWorkout = async (id) => {
   try {
@@ -54,14 +60,30 @@ const deleteWorkout = async (id) => {
   }
 };
 
+//Users
+
 const getUsers = async () => {
   try {
     const response = await axios.get("http://localhost:3001/user", {
       withCredentials: true,
     });
-    return response.data
+    return response.data;
   } catch (error) {
     console.log("Error From getUsers customHook", error);
+  }
+};
+
+
+//Requests
+
+const getRequests = async () => {
+  try {
+    const response = await axios.get("http://localhost:3001/request", {
+      withCredentials: true,
+    });
+    return response;
+  } catch (error) {
+    console.log("getRequest in utils", error);
   }
 };
 
@@ -71,5 +93,6 @@ export {
   getWorkout,
   getFilteredExercises,
   deleteWorkout,
-  getUsers
+  getUsers,
+  getRequests
 };

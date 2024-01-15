@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getUsers } from '../../utils/customrHooks';
-import { Avatar } from '@material-tailwind/react';
+import { Avatar, Button } from '@material-tailwind/react';
+import {Link} from "react-router-dom"
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
+  const [request, setRequests] = useState([]);
   useEffect(()=>{
     getUsers()
     .then(res=>setUsers(res))
@@ -20,9 +22,9 @@ export default function AdminDashboard() {
             <div className='text-white'>{user.username}</div>
             <div className='text-white'>{user.email}</div>
           </div>
-          
         ))}
       </div>
+      <Link to="/dashboard/requests"><Button>Request Page</Button></Link>
     </section>
   )
 }
