@@ -51,9 +51,9 @@ export default function Profile() {
   };
   return (
     <section className="p-6 ">
-      <h1 className="text-3xl text-white text-center"> Profile Settings</h1>
       <div className="Profile Card  w-96 m-auto p-8 ">
-        <div className="profilePicture flex flex-col gap-2 items-center bg-white py-5 rounded-t-3xl">
+        <div className="profilePicture flex flex-col gap-2 items-center bg-white py-5 rounded-t-3xl border-t-8 border-deep-orange-700">
+      <h1 className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black font-bold italic font-2xl "> Profile Settings</h1>
           <img
             src={
               activeUser && activeUser.avatar
@@ -77,9 +77,9 @@ export default function Profile() {
             >
               Upload Image
             </label>
-            <button className=" p-3 px-3  text-white font-bold text-xs  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 hover:text-deep-orange-700 transition-all duration-300 ">
+         {/*    <button className=" p-3 px-3  text-white font-bold text-xs  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 hover:text-deep-orange-700 transition-all duration-300 ">
               Remove Image
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="flex flex-col text-white gap-3 bg-deep-orange-800 bg-opacity-20 p-3 rounded-b-xl ">
