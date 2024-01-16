@@ -9,7 +9,6 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiAccountCircleFill } from "react-icons/ri";
-import { RiDashboard2Fill } from "react-icons/ri";
 import { RiLogoutCircleFill } from "react-icons/ri";
 import UserPhoto from "../../assets/User.svg";
 import { Link } from "react-router-dom";
@@ -20,7 +19,6 @@ import { useEffect } from "react";
 
 export default function ProfileMenu() {
   const { activeUser, setActiveUser } = useUser();
-  const isAdmin = activeUser && activeUser.role === "admin";
   const isUser = activeUser && activeUser.role === "user";
 
 
@@ -66,7 +64,7 @@ export default function ProfileMenu() {
             }
           />
         </MenuHandler>
-        <MenuList className=" bg-white bg-opacity-20 border-deep-orange-600 hover:border-deep-orange-500">
+        <MenuList className=" bg-transparent backdrop-blur-lg border-deep-orange-600 hover:border-deep-orange-500" >
           <Link to={"/Profile"}>
             <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900 ">
               <RiAccountCircleFill className="bg-transparent text-xl  " />

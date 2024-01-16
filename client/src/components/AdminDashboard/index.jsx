@@ -2,16 +2,50 @@ import React, { useEffect, useState } from "react";
 import { getUsers } from "../../utils/customrHooks";
 import { Avatar, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../utils/UserContext";
+import axios from "axios";
+
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
-  const [request, setRequests] = useState([]);
+  const { activeUser, setActiveUser } = useUser();
+
+  const navigate = useNavigate();
+  const notify = (message) => {
+    toast.success(message, { theme: "dark" });
+  };
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/user/logout",
+        {},
+        { withCredentials: true }
+      );
+      
+        setActiveUser(null);
+        notify(`See You Soon Dear ${activeUser.username}`);
+        navigate("/");
+      
+    } catch (error) {
+      console.log("handleLogOut", error);
+    }
+  };
   useEffect(() => {
     getUsers()
       .then((res) => setUsers(res))
       .catch((err) => console.log("from AdminDashboard useEffect", err));
   }, []);
   console.log("users", users);
+
+  useEffect(() => {
+    if (navigate.location?.pathname === "/") {
+      // Call notify function when navigating to home page
+      notify();
+    }
+  }, [navigate.location?.pathname]);
   return (
     <section className="p-6 ">
       <div className="user card form-container w-full m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
@@ -55,12 +89,14 @@ export default function AdminDashboard() {
       <Link to="/dashboard/requests">
         <Button>Request Page</Button>
       </Link>
-      <Link to="/dashboard/requests">
+      <Link onClick={handleLogout}>
         <Button>ADMIN Log Out</Button>
       </Link>
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>
       </Link>
+      {<ToastContainer theme="dark" />}
+
     </section>
   );
 }

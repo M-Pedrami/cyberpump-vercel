@@ -21,10 +21,10 @@ export default function Exercise({exercise}) {
           ></video>))}
           
         </div>
-        <div className="CardSteps flex flex-col gap-2 text-lg text-white">
-          {exercise?.instructions.map((instruction, index)=>( <p>
-            <span className="italic text-lg text-deep-orange-700 font-body">Step {index+1}: </span>{instruction}
-            itaque.
+        <div className=" w-full m-auto bg-blue-gray-50 p-8 rounded-t-xl border-t-8 border-t-deep-orange-500">
+          {exercise?.instructions.map((instruction, index)=>( <p className="mb-5">
+            <span className="italic text-lg text-deep-orange-700 font-body font-bold">Step {index+1}: </span><span className="">{instruction}</span>
+            
           </p>))}
           
         </div>

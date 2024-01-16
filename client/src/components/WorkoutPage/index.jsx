@@ -61,7 +61,7 @@ export default function WorkoutPage() {
       {exercisesToDisplay?.map((exercise) => (
         <Exercise key={exercise.id} exercise={exercise} />
       ))}
-      <p className="text-white text-center text-5xl">THIS IS A TEST</p>
+      
     </section>
   );
 }
