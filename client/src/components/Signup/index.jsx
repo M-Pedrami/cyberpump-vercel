@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 import { TbFaceIdError } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Card, CardBody, CardHeader, Typography, Input, Button } from "@material-tailwind/react";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
+  Input,
+  Button,
+} from "@material-tailwind/react";
 
-export default function Signup({onSignup}) {
+export default function Signup({ onSignup }) {
   const navigate = useNavigate();
- 
 
   const notify = () => {
     toast.success("Account Created Successfully!", {
       theme: "dark",
     });
   };
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -30,20 +36,10 @@ export default function Signup({onSignup}) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/user/signup",
-        user,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point
-          withCredentials: true
-        }
-      );
+      const response = await axiosClient.post("/user/signup", user);
 
       if (response.status === 201) {
-        console.log("FROM SIGN UP COMPONENT LINE 44",response.data);
+        console.log("FROM SIGN UP COMPONENT LINE 44", response.data);
         // Clear input fields after successful submission
         setEmail("");
         setUsername("");
@@ -69,57 +65,61 @@ export default function Signup({onSignup}) {
   return (
     <>
       <Card className="w-96 m-auto mt-20">
-        <CardHeader variant="gradient"
-        color="gray"
-        className="mb-4 grid h-28 place-items-center  border-deep-orange-500 border-t-8">
-          <Typography className="text-2xl font-bold">
-            Sign Up
-          </Typography>
+        <CardHeader
+          variant="gradient"
+          color="gray"
+          className="mb-4 grid h-28 place-items-center  border-deep-orange-500 border-t-8"
+        >
+          <Typography className="text-2xl font-bold">Sign Up</Typography>
         </CardHeader>
         <CardBody>
-        <form
-          action="submit"
-          method="post"
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-3"
-        >
-          <Input
-            type="text"
-            size="lg"
-            label="Email"
-            value={email}
-            className="bg-transparent text-black"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
+          <form
+            action="submit"
+            method="post"
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-3"
+          >
+            <Input
+              type="text"
+              size="lg"
+              label="Email"
+              value={email}
+              className="bg-transparent text-black"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
 
-          <Input
-            type="password"
-            size="lg"
-            label="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            className="bg-transparent text-black mb-5"
-          />
-          <Input
-            type="text"
-            label="Username"
-            size="lg"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-            className="bg-transparent text-black mb-5"
-          />
-          <Button type="submit" variant="gradient" className="mt-5 border-b-8 border-deep-orange-500" fullWidth>
-            Submit
-          </Button>
-        </form>
+            <Input
+              type="password"
+              size="lg"
+              label="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              className="bg-transparent text-black mb-5"
+            />
+            <Input
+              type="text"
+              label="Username"
+              size="lg"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              className="bg-transparent text-black mb-5"
+            />
+            <Button
+              type="submit"
+              variant="gradient"
+              className="mt-5 border-b-8 border-deep-orange-500"
+              fullWidth
+            >
+              Submit
+            </Button>
+          </form>
         </CardBody>
-      
       </Card>
       {displayError && (
         <>
@@ -129,10 +129,8 @@ export default function Signup({onSignup}) {
           </p>
         </>
       )}
-      
-      <ToastContainer theme="dark"/>
+
+      <ToastContainer theme="dark" />
     </>
   );
 }
-
-

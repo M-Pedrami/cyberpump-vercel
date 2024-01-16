@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Form from "./Form/Form";
 import { useUser } from "../../utils/UserContext";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function AddExercise({ updateExercises, handleOpen }) {
@@ -41,14 +41,7 @@ export default function AddExercise({ updateExercises, handleOpen }) {
         }
       }
 
-      const response = await axios.post(
-        "http://localhost:3001/exercise",
-        formData,
-        {
-          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point
-          withCredentials: true,
-        }
-      );
+      const response = await axiosClient.post("/exercise", formData, );
       console.log(response);
       toast.success("Exercise Created", {
         theme: "dark",

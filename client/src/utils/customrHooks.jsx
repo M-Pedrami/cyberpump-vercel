@@ -1,34 +1,30 @@
-import axios from "axios";
+import axiosClient from "../axiosClient";
 
 //Exercises
 
 const getExercises = async () => {
   try {
-    const exercises = await axios.get("http://localhost:3001/exercise");
+    const exercises = await axiosClient.get("/exercise");
     return exercises.data;
   } catch (error) {
     console.log("getExercises Catch", error);
   }
 };
 
-const getExercise = async (id) =>{
+const getExercise = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:3001/exercise/${id}`)
-    return response
+    const response = await axiosClient.get(`/exercise/${id}`);
+    return response;
   } catch (error) {
-    console.log("error from getExercise/utils", error)
+    console.log("error from getExercise/utils", error);
   }
-}
-
+};
 
 const getFilteredExercises = async (filters) => {
   try {
-    const exercises = await axios.get(
-      "http://localhost:3001/exercise/filtered",
-      {
-        params: filters,
-      }
-    );
+    const exercises = await axiosClient.get("/exercise/filtered", {
+      params: filters,
+    });
     console.log("FROM FETCH HOOK", exercises);
     return exercises;
   } catch (error) {
@@ -38,12 +34,9 @@ const getFilteredExercises = async (filters) => {
 //Workouts
 const getFilteredWorkouts = async (filters) => {
   try {
-    const workouts = await axios.get(
-      "http://localhost:3001/workout",
-      {
-        params: filters,
-      }
-    );
+    const workouts = await axiosClient.get("/workout", {
+      params: filters,
+    });
     console.log("FROM FETCH HOOK", workouts);
     return workouts;
   } catch (error) {
@@ -51,30 +44,27 @@ const getFilteredWorkouts = async (filters) => {
   }
 };
 
-
-
 const getWorkouts = async () => {
   try {
-    const workouts = await axios.get("http://localhost:3001/workout",
-    {withCredentials:  true});
+    const workouts = await axiosClient.get("/workout");
     return workouts.data.workouts;
   } catch (error) {
     console.log("getWorkouts Catch", error);
   }
 };
 
-const getUserWorkouts = async () =>{
+const getUserWorkouts = async () => {
   try {
-   const response = await axios.get("http://localhost:3001/user/workouts", {withCredentials: true})
-   return response.data 
+    const response = await axiosClient.get("/user/workouts");
+    return response.data;
   } catch (error) {
-    console.log("getUsersWorkout(utils", error )
+    console.log("getUsersWorkout(utils", error);
   }
-}
+};
 
 const getWorkout = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:3001/workout/${id}`);
+    const response = await axiosClient.get(`/workout/${id}`);
     console.log("getWorkout", response);
     return response.data.data;
   } catch (error) {
@@ -82,14 +72,10 @@ const getWorkout = async (id) => {
   }
 };
 
-
-
 const deleteWorkout = async (id) => {
   try {
-    const response = axios.delete(`http://localhost:3001/workout/${id}`, {
-      withCredentials: true,
-    });
-    return response
+    const response = axiosClient.delete(`/workout/${id}`);
+    return response;
   } catch (error) {
     console.log("deleteWorkout customHook", error);
   }
@@ -99,23 +85,18 @@ const deleteWorkout = async (id) => {
 
 const getUsers = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/user", {
-      withCredentials: true,
-    });
+    const response = await axiosClient.get("/user");
     return response.data;
   } catch (error) {
     console.log("Error From getUsers customHook", error);
   }
 };
 
-
 //Requests
 
 const getRequests = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/request", {
-      withCredentials: true,
-    });
+    const response = await axiosClient.get("/request");
     return response;
   } catch (error) {
     console.log("getRequest in utils", error);
@@ -132,5 +113,5 @@ export {
   deleteWorkout,
   getUsers,
   getRequests,
-  getFilteredWorkouts
+  getFilteredWorkouts,
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 import { TbFaceIdError } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -40,17 +40,7 @@ export default function Login({ onSignup }) {
     console.log("Submitting form...");
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/user/login",
-        user,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point with named export
-          withCredentials: true,
-        }
-      );
+      const response = await axiosClient.post("/user/login", user);
 
       // Clear input fields after successful submission
       setEmail("");

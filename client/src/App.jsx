@@ -10,21 +10,20 @@ import Navbar from "./components/Navbar";
 import { useUser } from "./utils/UserContext";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "./axiosClient";
 import AddExercise from "./components/AddExercise";
 import ExerciseDirectory from "./components/ExerciseDirectory";
 import AddWorkout from "./components/AddWorkout";
-import AdminDashboard from "./components/AdminDashboard"
-import RequestPage from "./components/RequestPage"
+import AdminDashboard from "./components/AdminDashboard";
+import RequestPage from "./components/RequestPage";
 import ExercisePage from "./components/ExercisePage";
+import Footer from "./components/Footer";
 
 function App() {
   const { activeUser, setActiveUser } = useUser();
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/user/profile", {
-        withCredentials: true,
-      });
+      const response = await axiosClient.get("/user/profile");
       setActiveUser(response.data);
       console.log("getUSER AXIOS RESPONSE", response);
     } catch (error) {
@@ -54,6 +53,7 @@ function App() {
         <Route path="/user/:id/addworkout" element={<AddWorkout />} />
         <Route path="/dashboard/requests" element={<RequestPage />} />
       </Routes>
+      <Footer />
       <ToastContainer />
     </>
   );

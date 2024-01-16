@@ -10,17 +10,15 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 import { getFilteredExercises } from "../../utils/customrHooks";
 import { MdLabelImportantOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import  AddExercise from "../AddExercise";
+import AddExercise from "../AddExercise";
 import { useParams } from "react-router-dom";
 
-
-
 export default function AddWorkout() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [workout, setWorkout] = useState({
     name: "",
     description: "",
@@ -30,7 +28,6 @@ export default function AddWorkout() {
     createdFor: id,
     thumbnail: "",
   });
-
 
   //state for Dialog
   const [open, setOpen] = useState(false);
@@ -59,14 +56,19 @@ export default function AddWorkout() {
   };
 
   //fething the exercises to be added in the workout
-  useEffect(() => {
-    getFilteredExercises()
-      .then((res) => {
-        setExercises(res.data.exercises);
-        setSelectedExercise(res.data.exercises[0]);
-      })
-      .catch((err) => console.log("useEffect/Addworkout", err));
-  }, [/* exercises */]);
+  useEffect(
+    () => {
+      getFilteredExercises()
+        .then((res) => {
+          setExercises(res.data.exercises);
+          setSelectedExercise(res.data.exercises[0]);
+        })
+        .catch((err) => console.log("useEffect/Addworkout", err));
+    },
+    [
+      /* exercises */
+    ]
+  );
 
   //handleWorkout
   const handleClick = async () => {
@@ -82,15 +84,8 @@ export default function AddWorkout() {
           formData.append(key, workout[key]);
         }
       }
-      const response = await axios.post(
-        "http://localhost:3001/workout",
-        formData,
-        {
-          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point
-          withCredentials: true,
-        }
-      );
-      console.log(response)
+      const response = await axiosClient.post("/workout", formData, );
+      console.log(response);
     } catch (error) {
       console.log("handleSubmit/addExercise.jsx", error);
     }
@@ -183,7 +178,8 @@ export default function AddWorkout() {
             <MdLabelImportantOutline className="text-deep-orange-500" />
             <p className="text-xs italic">
               {" "}
-              Select an Exercise From the Menu and Add, or Create from Scratch and Add
+              Select an Exercise From the Menu and Add, or Create from Scratch
+              and Add
             </p>
           </div>
           <div className="selectExercises flex items-center gap-4 ">
@@ -205,10 +201,20 @@ export default function AddWorkout() {
               </Select>
             )}
             <div className="selectExercise"></div>
-            <Button   onClick={handleAddExercise} className="rounded-full flex flex-col content-center items-center px-1 py-1 w-12 ">
-            <IoMdAdd className="text-2xl" />
+            <Button
+              onClick={handleAddExercise}
+              className="rounded-full flex flex-col content-center items-center px-1 py-1 w-12 "
+            >
+              <IoMdAdd className="text-2xl" />
             </Button>
-            <Button size="sm" onClick={handleOpen} className="text-xs py-2 w-32" type="button">Create</Button>
+            <Button
+              size="sm"
+              onClick={handleOpen}
+              className="text-xs py-2 w-32"
+              type="button"
+            >
+              Create
+            </Button>
           </div>
 
           <Button type="button" onClick={handleClick} className=" mt-3 w-52">
@@ -218,32 +224,35 @@ export default function AddWorkout() {
 
         {/* Dialog Box */}
         <Dialog
-        open={open}
-        handler={handleOpen}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
-        className="bg-transparent border-b-8 border-deep-orange-700"
-      >
-        <DialogHeader>Its a simple dialog.</DialogHeader>
-        <DialogBody className="">
-          <AddExercise updateExercises={setExercises}  handleOpen={handleOpen}/>
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
-      </Dialog>
+          open={open}
+          handler={handleOpen}
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0.9, y: -100 },
+          }}
+          className="bg-transparent border-b-8 border-deep-orange-700"
+        >
+          <DialogHeader>Its a simple dialog.</DialogHeader>
+          <DialogBody className="">
+            <AddExercise
+              updateExercises={setExercises}
+              handleOpen={handleOpen}
+            />
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              variant="text"
+              color="red"
+              onClick={handleOpen}
+              className="mr-1"
+            >
+              <span>Cancel</span>
+            </Button>
+            <Button variant="gradient" color="green" onClick={handleOpen}>
+              <span>Confirm</span>
+            </Button>
+          </DialogFooter>
+        </Dialog>
       </div>
     </section>
   );

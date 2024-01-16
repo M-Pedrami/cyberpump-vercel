@@ -1,0 +1,54 @@
+import { Link } from "react-router-dom"
+import Background from "../../assets/AboutUs.jpg"
+
+
+
+
+
+export default function AboutUs() {
+  return (
+    <section className="py-48 flex flex-col items-center bg-black " style={{
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url(${Background})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      
+    }}>
+      <h1 className="text-white text-4xl font-extrabold text-center tracking-wide"><span className=" text-deep-orange-500">Our</span> <span className=" italic">RIGHT</span> IN</h1>
+          <div className="flex flex-col mb-32 space-y-12 md:w-1/2">
+            <h1 className="max-w-l text-4xl font-bold text-center md:text-6xl md:text-left text-white">
+              Take Your <span className=" text-deep-orange-600">Fitness </span>{" "}
+              Game to the Next Level With Innovative{" "}
+              <span className=" text-deep-orange-600">Workout Plans</span>
+            </h1>
+            <p className="max-w-sm md:max-w-xl text-center text-deep-orange-600 md:text-left text-lg md:text-2xl">
+              Whether you are looking to{" "}
+              <span className=" font-bold text-white italic">
+                build muscles
+              </span>{" "}
+              or you want to{" "}
+              <span className=" font-bold text-white italic">
+                increase your strength
+              </span>
+              , you will find your best{" "}
+              <span className=" font-bold text-white italic">
+                workout routine
+              </span>{" "}
+              here.
+            </p>
+            <div className="flex space-x-10">
+              <Link>
+                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300 ">
+                  Join Us
+                </button>
+              </Link>
+              <Link>
+                <button className="p-3 px-6 pt-2 text-white text-xl font-bold bg-deep-orange-700 bg-opacity-10 border border-deep-orange-700 rounded-full  hover:bg-deep-orange-700 transition-all duration-300">
+                  Personalize Workout
+                </button>
+              </Link>
+            </div>
+          </div>
+      
+    </section>
+  )
+}

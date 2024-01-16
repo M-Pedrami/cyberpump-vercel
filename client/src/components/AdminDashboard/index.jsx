@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../utils/UserContext";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
@@ -18,10 +18,10 @@ export default function AdminDashboard() {
   };
   const handleLogout = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/user/logout",
+      const response = await axiosClient.post(
+        "/user/logout",
         {},
-        { withCredentials: true }
+        
       );
 
       setActiveUser(null);
@@ -92,8 +92,12 @@ export default function AdminDashboard() {
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>
       </Link>
-      <Link to="/workout"><Button>Workouts</Button></Link>
-      <Link to="/directory"><Button>Exercises</Button></Link>
+      <Link to="/workout">
+        <Button>Workouts</Button>
+      </Link>
+      <Link to="/directory">
+        <Button>Exercises</Button>
+      </Link>
       {<ToastContainer theme="dark" />}
     </section>
   );

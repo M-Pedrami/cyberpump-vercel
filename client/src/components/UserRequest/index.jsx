@@ -6,7 +6,7 @@ import {
   Option,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function UserRequest({ handleOpen }) {
@@ -21,13 +21,7 @@ export default function UserRequest({ handleOpen }) {
   //handleClick
   const handleRequest = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/request",
-        request,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axiosClient.post("/request", request);
       if (response.status === 201) {
         toast.success("Request Sent Successfully", {
           theme: "dark",
@@ -126,7 +120,6 @@ export default function UserRequest({ handleOpen }) {
           </Button>
         </div>
         <ToastContainer theme="dark" />
-
       </div>
     </section>
   );
