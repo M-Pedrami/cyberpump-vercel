@@ -8,7 +8,7 @@ const createWorkout = async (req, res, next) => {
     const {
       body: { name, description, exercises, level, category, createdFor },
       user: { id: creator },
-      file: {path}
+      file: {path},
     } = req;
 
     

@@ -49,6 +49,7 @@ function App() {
         <Route path="/addworkout" element={<AddWorkout />} />
         <Route path="/directory" element={<ExerciseDirectory />} />
         <Route path="/dashboard/users" element={<AdminDashboard />} />
+        <Route path="/user/:id/addworkout" element={<AddWorkout />} />
         <Route path="/dashboard/requests" element={<RequestPage />} />
       </Routes>
       <ToastContainer />

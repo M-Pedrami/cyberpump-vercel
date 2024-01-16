@@ -47,7 +47,7 @@ export default function RequestPage() {
                     })}
                   </td>
                   <td className="py-2 px-4 border-b ">
-                    <Button className="text-xs px-2 py-2 mr-2">Create Plan</Button>
+                    <Link to={`/user/${request.user._id}/addworkout`}><Button className="text-xs px-2 py-2 mr-2">Create Plan</Button></Link>
                     <Button className="text-xs px-2 py-2">Remove Request</Button>
                   </td>
                 </tr>

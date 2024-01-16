@@ -14,17 +14,20 @@ import axios from "axios";
 import { getFilteredExercises } from "../../utils/customrHooks";
 import { MdLabelImportantOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import  AddExercise from "../AddExercise"
+import  AddExercise from "../AddExercise";
+import { useParams } from "react-router-dom";
+
 
 
 export default function AddWorkout() {
+  const {id} = useParams();
   const [workout, setWorkout] = useState({
     name: "",
     description: "",
     exercises: [],
     category: "",
     level: "",
-    createdFor: "65986f876a477c521d93f667",
+    createdFor: id,
     thumbnail: "",
   });
 
@@ -63,7 +66,7 @@ export default function AddWorkout() {
         setSelectedExercise(res.data.exercises[0]);
       })
       .catch((err) => console.log("useEffect/Addworkout", err));
-  }, [exercises]);
+  }, [/* exercises */]);
 
   //handleWorkout
   const handleClick = async () => {
