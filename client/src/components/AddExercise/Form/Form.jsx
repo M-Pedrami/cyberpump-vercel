@@ -29,8 +29,6 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
       <ExerciseMedia exercise={exercise} setExercise={setExercise} />
     );
 
-  
-
   return (
     <section className="p-6 ">
       <div className="progressbar"></div>
@@ -38,48 +36,44 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
         <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
           <h1 className=" text-2xl font-bold italic ">{headers[step]}</h1>
           <div className="text-left text-xs">
-            {" "}
             {step === 0 ? (
               <p>General Information about your Exercise</p>
             ) : step === 1 ? (
               <p>
-                Enter The Instructions{" "}
+                Enter The Instructions
                 <span className="font-bold italic">Step by Step.</span> Once
-                finished adding all the steps click on{" "}
+                finished adding all the steps click on
                 <span className="font-bold italic">Finalize Instructions</span>
               </p>
             ) : (
               <>
-              
-              <p>
-                Upload Videos for the Execise.{" "}
-                <span className="font-bold italic">Maximum of 2 videos</span>{" "}
-                are allowed{" "}
-               
-              </p>
-               <p className="text-xs italic text-gray-600">
-               Allowed Formats : MP4, AVI, Webp, FLV
-             </p>
+                <p>
+                  Upload Videos for the Execise.
+                  <span className="font-bold italic">Maximum of 2 videos</span>
+                  are allowed
+                </p>
+                <p className="text-xs italic text-gray-600">
+                  Allowed Formats : MP4, AVI, Webp, FLV
+                </p>
               </>
-            )}{" "}
+            )}
           </div>
         </div>
         <div className="body mb-3 w-fit">{PageDisplay()}</div>
-        
+
         <div className="w-1/2 flex gap-2 content-center ">
           <Button
             onClick={handlePrev}
             disabled={step === 0}
             className="disabled:cursor-not-allowed  "
           >
-           Back
+            Back
           </Button>
           <Button
-            onClick={step===2 ? handleClick:handleNext}
-              
+            onClick={step === 2 ? handleClick : handleNext}
             className="disabled:cursor-not-allowed "
           >
-            {step===2 ? "Submit":"Next"}
+            {step === 2 ? "Submit" : "Next"}
           </Button>
         </div>
       </div>

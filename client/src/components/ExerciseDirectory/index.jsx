@@ -51,7 +51,7 @@ export default function ExerciseDirectory() {
   return (
     <section className="p-6">
       <h1 className="text-white text-3xl"> DIRECTORY</h1>
-      <p className="text-white">showing X of {exercises?.length} </p>{" "}
+      <p className="text-white">showing X of {exercises?.length} </p>
       <div className="bg-white text-black">
         <p>Filter by Target Muscle</p>
         <div className="checkBox">

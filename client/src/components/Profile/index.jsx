@@ -6,21 +6,24 @@ export default function Profile() {
   const handleUpload = async (e) => {
     const file = e.target.files[0];
 
-  
     if (file) {
       try {
         const formData = new FormData();
         formData.append("avatar", file);
-  
-        const response = await axios.post("http://localhost:3001/user/updateprofile", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true
-        });
 
-        setActiveUser(response.data.data)
-  
+        const response = await axios.post(
+          "http://localhost:3001/user/updateprofile",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true,
+          }
+        );
+
+        setActiveUser(response.data.data);
+
         console.log(response.data);
       } catch (error) {
         console.log("FROM HANDLEUPLOAD", error);
@@ -67,11 +70,11 @@ export default function Profile() {
           </div>
 
           <p>
-            <span className="font-bold italic">Name</span> : {activeUser?.username}
+            <span className="font-bold italic">Name</span> :{" "}
+            {activeUser?.username}
           </p>
           <p>
-            <span className="font-bold italic">Email</span> :{" "}
-            {activeUser?.email}
+            <span className="font-bold italic">Email</span> :{activeUser?.email}
           </p>
           <button className="border border-deep-orange-500 text-sm font-bold w-fit p-2 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-20 ">
             Change Password

@@ -121,7 +121,7 @@ export default function Login({ onSignup }) {
               Submit
             </Button>
             <p className="text-center text-xs">
-              Don't Have an Account Yet?{" "}
+              Don't Have an Account Yet?
               <Link to={"/signup"}>
                 <span className="font-bold text-deep-orange-700 cursor-pointer hover:text-deep-orange-200 translate-all duration-300">
                   Register
