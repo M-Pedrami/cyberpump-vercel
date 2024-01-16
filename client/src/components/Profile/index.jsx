@@ -1,6 +1,7 @@
 import { useUser } from "../../utils/UserContext";
 import ProfilePicture from "../../assets/User.svg";
 import axios from "axios";
+import UserWorkoutGrid from "../UserWorkouts";
 export default function Profile() {
   const { activeUser, setActiveUser } = useUser();
   const handleUpload = async (e) => {
@@ -80,7 +81,10 @@ export default function Profile() {
             Change Password
           </button>
         </div>
+        <div className="myWorkouts">
+        </div>
       </div>
+          <UserWorkoutGrid/>
     </section>
   );
 }

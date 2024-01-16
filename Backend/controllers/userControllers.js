@@ -33,7 +33,7 @@ const registerUser = asyncHander(async (req, res, next) => {
   });
   if (user) {
     //creating a paylod with necessary info, signing it using jwt as a token and sending the token in the cookie to the frontend.
-    const payload = { id: user._id, email: user.email, name: user.username };
+    const payload = { id: user._id, email: user.email, name: user.username, role:user.role };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "120m",
     });

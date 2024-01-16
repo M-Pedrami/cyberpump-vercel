@@ -10,6 +10,7 @@ const {
 } = require("../controllers/userControllers");
 const authenticate = require("../middlewares/authMiddleware");
 const upload = require("../middlewares/uploadMedia");
+const { userWorkouts } = require("../controllers/workoutControllers");
 router.use((req, res, next) => {
   console.log(
     `Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`
@@ -25,6 +26,7 @@ router
   .post(authenticate, upload.single("avatar"), updateProfile);
 router.route("/logout").post(authenticate, logoutUser);
 router.route("/").get(getUsers);
+router.route("/workouts").get(authenticate, userWorkouts)
 
 module.exports = router;
 

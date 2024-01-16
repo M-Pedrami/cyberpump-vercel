@@ -5,6 +5,7 @@ const {
   createWorkout,
   getWorkout,
   deleteWorkout,
+  filteredWorkouts
 } = require("../controllers/workoutControllers");
 
 const authenticate = require("../middlewares/authMiddleware");

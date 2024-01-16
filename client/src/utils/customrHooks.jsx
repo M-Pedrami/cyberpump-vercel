@@ -11,6 +11,9 @@ const getExercises = async () => {
   }
 };
 
+
+//Workouts
+
 const getFilteredExercises = async (filters) => {
   try {
     const exercises = await axios.get(
@@ -26,16 +29,24 @@ const getFilteredExercises = async (filters) => {
   }
 };
 
-//Workouts
-
 const getWorkouts = async () => {
   try {
-    const workouts = await axios.get("http://localhost:3001/workout");
+    const workouts = await axios.get("http://localhost:3001/workout",
+    {withCredentials:  true});
     return workouts.data.workouts;
   } catch (error) {
     console.log("getWorkouts Catch", error);
   }
 };
+
+const getUserWorkouts = async () =>{
+  try {
+   const response = await axios.get("http://localhost:3001/user/workouts", {withCredentials: true})
+   return response.data 
+  } catch (error) {
+    console.log("getUsersWorkout(utils", error )
+  }
+}
 
 const getWorkout = async (id) => {
   try {
@@ -92,6 +103,7 @@ export {
   getWorkouts,
   getWorkout,
   getFilteredExercises,
+  getUserWorkouts,
   deleteWorkout,
   getUsers,
   getRequests

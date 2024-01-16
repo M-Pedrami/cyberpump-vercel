@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Workout = require("../models/workout");
 const User = require("../models/user");
-const Exercise = require("../models/exercise");
 
 const createWorkout = async (req, res, next) => {
   try {
@@ -53,6 +52,17 @@ const getWorkouts = async (req, res, next) => {
   }
 };
 
+const userWorkouts = async (req, res, next) => {
+  try {
+    const {id} = req.user
+    const found = await Workout.find({createdFor:id});
+    res.status(200).json(found)
+  } catch (error) {
+    console.log("CATCH/filteredExercises", error);
+    next(error);
+  }
+};
+
 const deleteWorkout = async (req, res, next) => {
   try {
     const {
@@ -76,4 +86,4 @@ const deleteWorkout = async (req, res, next) => {
 };
 
 
-module.exports = { createWorkout, getWorkouts, getWorkout, deleteWorkout };
+module.exports = { createWorkout, getWorkouts, getWorkout, deleteWorkout, userWorkouts };
