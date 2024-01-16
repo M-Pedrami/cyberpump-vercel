@@ -44,10 +44,10 @@ export default function UserRequest({ handleOpen }) {
     <section className="p-6">
       <div className="card form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
         <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
-          <h1 className="text-2xl font-bold italic">Add Workout</h1>
+          <h1 className="text-2xl font-bold italic">Request</h1>
           <p className="text-xs italic">
             {" "}
-            Enter Information for the Workout Plan
+            Please Fill Out all the Fields Bellow
           </p>
         </div>
 

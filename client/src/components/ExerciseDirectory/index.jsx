@@ -51,7 +51,7 @@ export default function ExerciseDirectory() {
 
   return (
     <section className="p-6">
-      <div className="params  w-full bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
+      <div className="params  w-[90%] m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
 
       <div className="">
         <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>

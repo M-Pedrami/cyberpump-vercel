@@ -19,18 +19,22 @@ export default function Navbar() {
         </div>
         {/* MENU ITEMS */}
         <div className="hidden md:flex space-x-6">
-          <Link
-            to="/workout"
-            className="font-bold text-orange-600 hover:text-orange-400"
-          >
-            WORKOUTS
-          </Link>
-          <Link
-            to="/directory"
-            className="font-bold text-orange-600 hover:text-orange-400"
-          >
-            DIRECTORY
-          </Link>
+          {isUser && (
+            <Link
+              to="/workout"
+              className="font-bold text-orange-600 hover:text-orange-400"
+            >
+              WORKOUTS
+            </Link>
+          )}
+          {isUser && (
+            <Link
+              to="/directory"
+              className="font-bold text-orange-600 hover:text-orange-400"
+            >
+              EXERCISES
+            </Link>
+          )}
           {isUser && (
             <Link
               to="/profile"
@@ -81,7 +85,6 @@ export default function Navbar() {
               </Link>
             </>
           )}
-          
         </div>
         {/* Profile Menu */}
         <ProfileMenu />

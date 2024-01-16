@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../utils/UserContext";
 import axios from "axios";
 
-
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
   const { activeUser, setActiveUser } = useUser();
@@ -24,11 +23,10 @@ export default function AdminDashboard() {
         {},
         { withCredentials: true }
       );
-      
-        setActiveUser(null);
-        notify(`See You Soon Dear ${activeUser.username}`);
-        navigate("/");
-      
+
+      setActiveUser(null);
+      notify(`See You Soon Dear ${activeUser.username}`);
+      navigate("/");
     } catch (error) {
       console.log("handleLogOut", error);
     }
@@ -73,11 +71,10 @@ export default function AdminDashboard() {
                   </td>
                   <td className="py-2 px-4 border-b">{user.email}</td>
                   <td className="py-2 px-4 border-b">
-                    {new Date(user.created_at).toLocaleDateString("en-de",{
+                    {new Date(user.created_at).toLocaleDateString("en-de", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
-                      
                     })}
                   </td>
                 </tr>
@@ -95,8 +92,9 @@ export default function AdminDashboard() {
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>
       </Link>
+      <Link to="/workout"><Button>Workouts</Button></Link>
+      <Link to="/directory"><Button>Exercises</Button></Link>
       {<ToastContainer theme="dark" />}
-
     </section>
   );
 }

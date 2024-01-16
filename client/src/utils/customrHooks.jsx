@@ -11,6 +11,15 @@ const getExercises = async () => {
   }
 };
 
+const getExercise = async (id) =>{
+  try {
+    const response = await axios.get(`http://localhost:3001/exercise/${id}`)
+    return response
+  } catch (error) {
+    console.log("error from getExercise/utils", error)
+  }
+}
+
 
 const getFilteredExercises = async (filters) => {
   try {
@@ -115,6 +124,7 @@ const getRequests = async () => {
 
 export {
   getExercises,
+  getExercise,
   getWorkouts,
   getWorkout,
   getFilteredExercises,

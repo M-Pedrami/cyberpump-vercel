@@ -65,6 +65,8 @@ export default function RequestPage() {
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>
       </Link>
+      <Link to="/workout"><Button>Workouts</Button></Link>
+      <Link to="/directory"><Button>Exercises</Button></Link>
     </section>
   );
 }
