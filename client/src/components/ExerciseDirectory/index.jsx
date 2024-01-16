@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getFilteredExercises } from "../../utils/customrHooks";
 import { Checkbox } from "@material-tailwind/react";
 import { MdOutlineFitnessCenter } from "react-icons/md";
+import ExerciseCard from "../ExerciseCard";
 
 export default function ExerciseDirectory() {
   const [exercises, setExercises] = useState(null);
@@ -184,9 +185,9 @@ export default function ExerciseDirectory() {
         />
       </div>
       </div>
-      <div className="w-full bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
+      <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-10 w-full rounded-t-xl ">
         {exercises && exercises.map(exercise =>(
-          <div>{exercise.name}</div>
+          <ExerciseCard data={exercise} key={exercise._id}/>
         ))}   
       </div>
     </section>
