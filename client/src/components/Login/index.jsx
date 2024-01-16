@@ -135,7 +135,7 @@ export default function Login({ onSignup }) {
       </Card>
       {displayError && (
         <>
-          <TbFaceIdError className=" text-8xl m-auto mt-28  text-deep-orange-700" />
+          <TbFaceIdError className=" text-8xl m-auto mt-5  text-deep-orange-700" />
           <p className="text-4xl text-center  text-deep-orange-700">
             {displayError}
           </p>

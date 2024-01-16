@@ -59,6 +59,12 @@ export default function RequestPage() {
       <Link to="/dashboard/users">
         <Button>Users</Button>
       </Link>
+      <Link to="/dashboard/requests">
+        <Button>ADMIN Log Out</Button>
+      </Link>
+      <Link to="/dashboard/requests">
+        <Button>Create Admin Account</Button>
+      </Link>
     </section>
   );
 }

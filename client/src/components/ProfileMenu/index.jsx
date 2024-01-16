@@ -20,6 +20,10 @@ import { useEffect } from "react";
 
 export default function ProfileMenu() {
   const { activeUser, setActiveUser } = useUser();
+  const isAdmin = activeUser && activeUser.role === "admin";
+  const isUser = activeUser && activeUser.role === "user";
+
+
   const navigate = useNavigate();
   const notify = (message) => {
     toast.success(message, { theme: "dark" });
@@ -48,8 +52,8 @@ export default function ProfileMenu() {
     }
   }, [navigate.location?.pathname]);
   return (
-    <>
-      <Menu>
+    <>{isUser &&
+      (<Menu>
         <MenuHandler>
           <Avatar
             variant="circular"
@@ -71,23 +75,16 @@ export default function ProfileMenu() {
               </Typography>
             </MenuItem>
           </Link>
-          <MenuItem className="flex items-center gap-2 focus:bg-white  text-deep-orange-400 focus:text-gray-900">
-            <RiDashboard2Fill className="bg-transparent text-xl " />
-            <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
-              Dashboard
-            </Typography>
-          </MenuItem>
-
           <hr className="my-2 border-deep-orange-400" />
-          <MenuItem className="flex items-center gap-2 focus:bg-white  text-white focus:text-gray-900">
+          <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900" onClick={handleLogout}>
             <RiLogoutCircleFill className="bg-transparent text-xl " />
             <Typography className="bg-transparent  text-sm font-bold   hover:text-gray-900">
-              <button onClick={handleLogout}>Log Out</button>
+              Log Out
             </Typography>
           </MenuItem>
       {<ToastContainer theme="dark" />}
         </MenuList>
-      </Menu>
+      </Menu>)}
     </>
   );
 }

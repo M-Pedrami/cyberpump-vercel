@@ -55,6 +55,12 @@ export default function AdminDashboard() {
       <Link to="/dashboard/requests">
         <Button>Request Page</Button>
       </Link>
+      <Link to="/dashboard/requests">
+        <Button>ADMIN Log Out</Button>
+      </Link>
+      <Link to="/dashboard/requests">
+        <Button>Create Admin Account</Button>
+      </Link>
     </section>
   );
 }
