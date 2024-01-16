@@ -2,8 +2,26 @@ import { useUser } from "../../utils/UserContext";
 import ProfilePicture from "../../assets/User.svg";
 import axios from "axios";
 import UserWorkoutGrid from "../UserWorkouts";
+import UserRequest from "../UserRequest";
+import { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 export default function Profile() {
   const { activeUser, setActiveUser } = useUser();
+
+    //state for Dialog
+    const [open, setOpen] = useState(false);
+
+    //handleOpen for Dialog
+    const handleOpen = () => setOpen(!open);
+
+
+   //handleUpload Profile Picture
   const handleUpload = async (e) => {
     const file = e.target.files[0];
 
@@ -77,14 +95,43 @@ export default function Profile() {
           <p>
             <span className="font-bold italic">Email</span> :{activeUser?.email}
           </p>
-          <button className="border border-deep-orange-500 text-sm font-bold w-fit p-2 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-20 ">
-            Change Password
-          </button>
-        </div>
-        <div className="myWorkouts">
+          {activeUser && <button className="border border-deep-orange-500 text-sm font-bold w-fit py-2 px-4 rounded-xl hover:bg-deep-orange-700 hover:bg-opacity-20 " onClick={handleOpen}>
+          Send Request
+          </button>}
         </div>
       </div>
-          <UserWorkoutGrid/>
+     
+      <div className="myWorkouts"></div>
+      {/* Dialog Box */}
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+        className="bg-transparent border-b-8 border-deep-orange-700"
+      >
+        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogBody className="">
+          <UserRequest  handleOpen={handleOpen}  />
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
+      <UserWorkoutGrid />
     </section>
   );
 }
+

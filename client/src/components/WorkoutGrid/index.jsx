@@ -1,3 +1,4 @@
+
 import WorkoutCard from "../WorkoutCard";
 import { getFilteredWorkouts, getWorkouts } from "../../utils/customrHooks";
 import { useEffect } from "react";
@@ -99,10 +100,10 @@ export default function WorkoutGrid() {
           />
       </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-10">
         {workoutData &&
           workoutData.map((workout) => (
-            <WorkoutCard key={workout._id} data={workout} />
+            <WorkoutCard key={workout._id} data={workout} setWorkoutData={setWorkoutData}  />
           ))}
       </div>
     </section>

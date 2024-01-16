@@ -9,19 +9,26 @@ import { PiBicycleFill } from "react-icons/pi";
 import { Button } from "@material-tailwind/react";
 import { deleteWorkout } from "../../utils/customrHooks"
 import { useUser } from "../../utils/UserContext";
+import { FaTrash } from "react-icons/fa";
+
 
 
 
  
-export default function WorkoutCard({data}) {
+export default function WorkoutCard({data, setWorkoutData}) {
   const handleDelete = ()=>{
     deleteWorkout(data._id)
-    .then(res=>console.log(res))
+    .then(res=>setWorkoutData((prevWorkouts)=>{
+      return prevWorkouts.filter((workout)=>{
+        console.log(workout._id, data._id)
+        return workout._id !== data._id
+      })
+    }))
     .catch(err=>console.log("handleDelete", err))
   }
   const {activeUser} = useUser()
   return (
-    <div>
+    <div className=" relative">
 
       <Link to={`/workout/${data._id}`}>
       
@@ -36,10 +43,10 @@ export default function WorkoutCard({data}) {
         </div>
       </div>
       </Link>
-      {activeUser.role === "admin" && (
-        <Button type="button" onClick={handleDelete}>
-          Delete
-        </Button>
+      {activeUser && activeUser.role === "admin" && (
+       
+          <FaTrash size={27} className=" text-xl text-white absolute right-2 bottom-2 hover:text-deep-orange-700 transition-all cursor-pointer" onClick={handleDelete}/>
+        
       )}
     </div>
   );
