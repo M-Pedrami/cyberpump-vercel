@@ -4,11 +4,13 @@ const User = require("../models/user")
 
 const postRequest = asyncHander(async (req, res) => {
   const {
-    body: { user, height, weight, age, goal, request },
+    body: {height, weight, age, goal, request },
   } = req;
 
+  const id = req.user.id
+
   const newRequest = await Request.create({
-    user,
+    user: id,
     height,
     weight,
     age,
