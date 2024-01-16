@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Form from "./Form/Form";
 import { useUser } from "../../utils/UserContext";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function AddExercise() {
+export default function AddExercise({ updateExercises, handleOpen }) {
   const { activeUser } = useUser();
   const [isValid, setIsValid] = useState(false);
   const [exercise, setExercise] = useState({
@@ -17,13 +18,6 @@ export default function AddExercise() {
     video: {},
     thumbnail: "",
   });
-  //handle the different states for the inputs with a function:
-  const handleInputChange = (fieldName, value) => {
-    setExercise((prevExercise) => ({
-      ...prevExercise,
-      [fieldName]: value,
-    }));
-  };
   //handle what happens when user clicks on submit button
   const handleSubmit = async () => {
     try {
@@ -39,7 +33,7 @@ export default function AddExercise() {
           exercise[key].forEach((step, index) => {
             formData.append(`instructions[${index}]`, step);
           });
-        } else  {
+        } else {
           formData.append(
             key,
             exercise[key] //look it up later
@@ -56,6 +50,15 @@ export default function AddExercise() {
         }
       );
       console.log(response);
+      toast.success("Exercise Created", {
+        theme: "dark",
+      });
+      if (updateExercises) {
+        updateExercises((prev) => {
+          return [...prev, response.data];
+        });
+        handleOpen(false);
+      }
     } catch (error) {
       console.log("handleSubmit/addExercise.jsx", error);
     }
@@ -68,7 +71,8 @@ export default function AddExercise() {
 
       if (!value) valid = false;
       if (Array.isArray(value) && !value.length) valid = false;
-      if(typeof value ==="object" && !Object.keys(value).length) valid = false;
+      if (typeof value === "object" && !Object.keys(value).length)
+        valid = false;
     }
     return valid;
   };
@@ -81,8 +85,9 @@ export default function AddExercise() {
         exercise={exercise}
         setExercise={setExercise}
         handleClick={handleSubmit}
-        isValid = {isValid}
+        isValid={isValid}
       />
+      <ToastContainer theme="dark" />
     </div>
   );
 }

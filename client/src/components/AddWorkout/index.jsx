@@ -4,12 +4,17 @@ import {
   Select,
   Option,
   Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getFilteredExercises } from "../../utils/customrHooks";
 import { MdLabelImportantOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import  AddExercise from "../AddExercise"
 
 
 export default function AddWorkout() {
@@ -22,6 +27,13 @@ export default function AddWorkout() {
     createdFor: "65986f876a477c521d93f667",
     thumbnail: "",
   });
+
+
+  //state for Dialog
+  const [open, setOpen] = useState(false);
+
+  //handleOpen for Dialog
+  const handleOpen = () => setOpen(!open);
 
   //state for exercises to be displayed in the dropDown Menue
   const [exercises, setExercises] = useState([]);
@@ -51,7 +63,7 @@ export default function AddWorkout() {
         setSelectedExercise(res.data.exercises[0]);
       })
       .catch((err) => console.log("useEffect/Addworkout", err));
-  }, []);
+  }, [exercises]);
 
   //handleWorkout
   const handleClick = async () => {
@@ -193,13 +205,42 @@ export default function AddWorkout() {
             <Button   onClick={handleAddExercise} className="rounded-full flex flex-col content-center items-center px-1 py-1 w-12 ">
             <IoMdAdd className="text-2xl" />
             </Button>
-            <Button size="sm" className="text-xs py-2" type="button">Create</Button>
+            <Button size="sm" onClick={handleOpen} className="text-xs py-2 w-32" type="button">Create</Button>
           </div>
 
           <Button type="button" onClick={handleClick} className=" mt-3 w-52">
             Add Workout
           </Button>
         </div>
+
+        {/* Dialog Box */}
+        <Dialog
+        open={open}
+        handler={handleOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+        className="bg-transparent border-b-8 border-deep-orange-700"
+      >
+        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogBody className="">
+          <AddExercise updateExercises={setExercises}  handleOpen={handleOpen}/>
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
       </div>
     </section>
   );

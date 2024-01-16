@@ -24,6 +24,8 @@ export default function Login({ onSignup }) {
     });
   };
 
+  //notify function can be in the app.jsx and the toast container in the app.jsx, to use notify in other components import it in them
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({ password, email });
@@ -45,7 +47,7 @@ export default function Login({ onSignup }) {
           headers: {
             "Content-Type": "application/json",
           },
-          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point
+          //adding this line is necessary for handling cookies, also the origin and credentials need to be added to the cors() middleware in the backend entry point with named export
           withCredentials: true,
         }
       );
