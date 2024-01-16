@@ -50,10 +50,10 @@ export default function ExerciseDirectory() {
 
   return (
     <section className="p-6">
-      <h1 className="text-white text-3xl"> DIRECTORY</h1>
-      <p className="text-white">showing X of {exercises?.length} </p>
-      <div className="bg-white text-black">
-        <p>Filter by Target Muscle</p>
+      <div className="params  w-full bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
+
+      <div className="">
+        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>
         <div className="checkBox">
           <Checkbox
             color="red"
@@ -120,8 +120,8 @@ export default function ExerciseDirectory() {
           />
         </div>
       </div>
-      <div className="bg-white text-black">
-        <p>Filter By Difficulty</p>
+      <div className="">
+        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Difficulty</p>
         <Checkbox
           color="red"
           label="Beginner"
@@ -145,8 +145,8 @@ export default function ExerciseDirectory() {
         />
         {/* Repeat for other level checkboxes */}
       </div>
-      <div className="bg-white text-black">
-        <p>Filter By Equipment</p>
+      <div className="">
+        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Equipment</p>
         <Checkbox
           color="red"
           label="Dumbbell"
@@ -182,6 +182,12 @@ export default function ExerciseDirectory() {
           checked={selectedEquipment.includes("Kettlebells")}
           onChange={() => handleEquipmentCheckboxChange("Kettlebells")}
         />
+      </div>
+      </div>
+      <div className="w-full bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
+        {exercises && exercises.map(exercise =>(
+          <div>{exercise.name}</div>
+        ))}   
       </div>
     </section>
   );
