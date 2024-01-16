@@ -12,8 +12,6 @@ const getExercises = async () => {
 };
 
 
-//Workouts
-
 const getFilteredExercises = async (filters) => {
   try {
     const exercises = await axios.get(
@@ -28,6 +26,23 @@ const getFilteredExercises = async (filters) => {
     console.log("getExercises Catch", error);
   }
 };
+//Workouts
+const getFilteredWorkouts = async (filters) => {
+  try {
+    const workouts = await axios.get(
+      "http://localhost:3001/workout",
+      {
+        params: filters,
+      }
+    );
+    console.log("FROM FETCH HOOK", workouts);
+    return workouts;
+  } catch (error) {
+    console.log("getExercises Catch", error);
+  }
+};
+
+
 
 const getWorkouts = async () => {
   try {
@@ -106,5 +121,6 @@ export {
   getUserWorkouts,
   deleteWorkout,
   getUsers,
-  getRequests
+  getRequests,
+  getFilteredWorkouts
 };

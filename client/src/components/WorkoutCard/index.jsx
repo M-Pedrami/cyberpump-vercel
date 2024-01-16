@@ -36,7 +36,11 @@ export default function WorkoutCard({data}) {
         </div>
       </div>
       </Link>
-        <Button type="button" onClick={handleDelete}>Delete</Button>
+      {activeUser.role === "admin" && (
+        <Button type="button" onClick={handleDelete}>
+          Delete
+        </Button>
+      )}
     </div>
   );
 }
