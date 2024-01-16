@@ -54,7 +54,7 @@ const deleteWorkout = async (id) => {
     const response = axios.delete(`http://localhost:3001/workout/${id}`, {
       withCredentials: true,
     });
-    return response.data.data;
+    return response
   } catch (error) {
     console.log("deleteWorkout customHook", error);
   }

@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getFilteredExercises } from "../../utils/customrHooks";
 import { MdLabelImportantOutline } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
+
 
 export default function AddWorkout() {
   const [workout, setWorkout] = useState({
@@ -166,8 +168,7 @@ export default function AddWorkout() {
             <MdLabelImportantOutline className="text-deep-orange-500" />
             <p className="text-xs italic">
               {" "}
-              Select an Exercise From the Menu, Add Exercise to Add it to the
-              Workout
+              Select an Exercise From the Menu and Add, or Create from Scratch and Add
             </p>
           </div>
           <div className="selectExercises flex items-center gap-4 ">
@@ -188,10 +189,11 @@ export default function AddWorkout() {
                 })}
               </Select>
             )}
-
-            <Button type="button" onClick={handleAddExercise} className="w-44">
-              Add Exercise
+            <div className="selectExercise"></div>
+            <Button   onClick={handleAddExercise} className="rounded-full flex flex-col content-center items-center px-1 py-1 w-12 ">
+            <IoMdAdd className="text-2xl" />
             </Button>
+            <Button size="sm" className="text-xs py-2" type="button">Create</Button>
           </div>
 
           <Button type="button" onClick={handleClick} className=" mt-3 w-52">
