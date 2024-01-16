@@ -57,25 +57,31 @@ const filteredExercises = async (req, res, next) => {
 
     if (targetMuscle) {
       // Check if targetMuscle is a comma-separated string
-      const targetMusclesArray = targetMuscle.toString().split(',');
+      const targetMusclesArray = targetMuscle.toString().split(",");
 
       // Use $in operator to match exercises with any of the target muscles
-      filter.targetMuscle = { $in: targetMusclesArray.map(muscle => new RegExp(muscle, 'i')) };
+      filter.targetMuscle = {
+        $in: targetMusclesArray.map((muscle) => new RegExp(muscle, "i")),
+      };
     }
 
     if (level) {
       // Check if level is a comma-separated string
-      const levelsArray = level.toString().split(',');
+      const levelsArray = level.toString().split(",");
 
       // Use $in operator to match exercises with any of the target muscles
-      filter.level = { $in: levelsArray.map(level => new RegExp(level, 'i')) };
+      filter.level = {
+        $in: levelsArray.map((level) => new RegExp(level, "i")),
+      };
     }
     if (equipment) {
       // Check if equipment is a comma-separated string
-      const equipmentsArray = equipment.toString().split(',');
+      const equipmentsArray = equipment.toString().split(",");
 
       // Use $in operator to match exercises with any of the target muscles
-      filter.equipment = { $in: equipmentsArray.map(equipment => new RegExp(equipment, 'i')) };
+      filter.equipment = {
+        $in: equipmentsArray.map((equipment) => new RegExp(equipment, "i")),
+      };
     }
 
     if (Object.keys(filter).length === 0) {
@@ -98,4 +104,16 @@ const filteredExercises = async (req, res, next) => {
   }
 };
 
-module.exports = { createExercise, getExercises, filteredExercises };
+const getExercise = async (req, res) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+    const found = await Exercise.findById(id);
+    res.status(200).json(found);
+  } catch (error) {
+    console.log("ERROR FROM getExercise Catch Backend");
+  }
+};
+
+module.exports = { createExercise, getExercises, filteredExercises, getExercise };

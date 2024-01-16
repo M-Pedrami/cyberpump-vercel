@@ -16,6 +16,7 @@ import ExerciseDirectory from "./components/ExerciseDirectory";
 import AddWorkout from "./components/AddWorkout";
 import AdminDashboard from "./components/AdminDashboard"
 import RequestPage from "./components/RequestPage"
+import ExercisePage from "./components/ExercisePage";
 
 function App() {
   const { activeUser, setActiveUser } = useUser();
@@ -44,6 +45,7 @@ function App() {
         <Route path="/signup" element={<Signup onSignup={() => getUser()} />} />
         <Route path="/workout" element={<WorkoutGrid />} />
         <Route path="/workout/:id" element={<WorkoutPage />} />
+        <Route path="/exercise/:id" element={<ExercisePage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/addexercise" element={<AddExercise />} />
         <Route path="/addworkout" element={<AddWorkout />} />

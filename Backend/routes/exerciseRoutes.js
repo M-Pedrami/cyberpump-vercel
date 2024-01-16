@@ -1,22 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const {createExercise, getExercises,filteredExercises} = require("../controllers/exerciseControllers")
-const authenticate = require("../middlewares/authMiddleware") 
-const {upload, cloudinaryUpload} = require("../middlewares/uploadVideos")
+const {
+  createExercise,
+  getExercises,
+  filteredExercises,
+  getExercise,
+} = require("../controllers/exerciseControllers");
+const authenticate = require("../middlewares/authMiddleware");
+const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
 
 //Logger
 router.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`);
+  console.log(
+    `Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`
+  );
   next();
 });
 
-router.route('/').post(authenticate,upload.array("video"),cloudinaryUpload, createExercise).get(getExercises)
+router
+  .route("/")
+  .post(authenticate, upload.array("video"), cloudinaryUpload, createExercise)
+  .get(getExercises);
 
 //filtered
 
 router.get("/filtered", filteredExercises);
 
+//SingleExercise
+router.get("/:id", getExercise);
 
-
-
-module.exports = router
+module.exports = router;
