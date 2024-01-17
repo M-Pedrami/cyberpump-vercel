@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { getRequests } from "../../utils/customrHooks";
+import axiosClient from "../../axiosClient";
 export default function RequestPage() {
   const [requests, setRequests] = useState([]);
   useEffect(() => {
@@ -10,6 +11,32 @@ export default function RequestPage() {
       .catch((err) => console.log("getRequests/RequestPage", err));
   }, []);
   console.log(requests);
+  const handleDeleteRequest = async (requestId) => {
+    try {
+      // Make a request to delete the selected request
+      await axiosClient.delete(`/request/${requestId}`);
+      
+      // Update the state to remove the deleted request
+      setRequests((prevRequests) => prevRequests.filter(request => request._id !== requestId));
+    } catch (error) {
+      console.error("Error deleting request:", error);
+    }
+  };
+  const handleLogout = async () => {
+    try {
+      const response = await axiosClient.post(
+        "/user/logout",
+        {},
+        
+      );
+
+      setActiveUser(null);
+      notify(`See You Soon Dear ${activeUser.username}`);
+      navigate("/");
+    } catch (error) {
+      console.log("handleLogOut", error);
+    }
+  };
   return (
     <section className="p-6">
       <Link to="/dashboard/users">
@@ -40,7 +67,7 @@ export default function RequestPage() {
             </thead>
             <tbody>
               {requests.map((request) => (
-                <tr key={request.id} className="hover:bg-gray-100">
+                <tr key={request._id} className="hover:bg-gray-100">
                   <td className="py-2 px-4 border-b">
                     {request.user.username}
                   </td>
@@ -59,7 +86,7 @@ export default function RequestPage() {
                   </td>
                   <td className="py-2 px-4 border-b ">
                     <Link to={`/user/${request.user._id}/addworkout`}><Button className="text-xs px-2 py-2 mr-2">Create Plan</Button></Link>
-                    <Button className="text-xs px-2 py-2">Remove Request</Button>
+                    <Button  onClick={() => handleDeleteRequest(request._id)} className="text-xs px-2 py-2">Remove Request</Button>
                   </td>
                 </tr>
               ))}

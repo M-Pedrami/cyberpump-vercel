@@ -14,8 +14,8 @@ export default function ExercisePage() {
     <section className="">
   {exercise && (
     <div className="Card flex flex-col text-left p-10 w-3/4 m-auto">
-      <div className="CardHeader bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 p-4 w-full rounded-2xl">
-        <h1 className="text-4xl text-white text-left font-bold">
+      <div className="bg-blue-gray-50 p-8 rounded-t-xl border-t-8 border-t-deep-orange-500">
+        <h1 className="text-4xl  text-left font-bold">
           {exercise.name}
         </h1>
       </div>
