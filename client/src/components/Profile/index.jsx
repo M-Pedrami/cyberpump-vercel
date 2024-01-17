@@ -137,7 +137,6 @@ export default function Profile() {
           </Button>
         </DialogFooter>
       </Dialog>
-      <UserWorkoutGrid />
     </section>
   );
 }

@@ -43,6 +43,14 @@ export default function Navbar() {
               MY PROFILE
             </Link>
           )}
+          {isUser && (
+            <Link
+              to="/profile/workout"
+              className="font-bold text-orange-600 hover:text-orange-400"
+            >
+              MY WORKOUTS
+            </Link>
+          )}
           {!activeUser && (
             <Link
               to="/login"

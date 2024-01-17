@@ -18,6 +18,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import RequestPage from "./components/RequestPage";
 import ExercisePage from "./components/ExercisePage";
 import Footer from "./components/Footer";
+import UserWorkoutGrid from "./components/UserWorkouts";
 
 function App() {
   const { activeUser, setActiveUser } = useUser();
@@ -52,6 +53,7 @@ function App() {
         <Route path="/dashboard/users" element={<AdminDashboard />} />
         <Route path="/user/:id/addworkout" element={<AddWorkout />} />
         <Route path="/dashboard/requests" element={<RequestPage />} />
+        <Route path="/profile/workout" element={<UserWorkoutGrid />} />
       </Routes>
       <Footer />
       <ToastContainer />
