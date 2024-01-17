@@ -9,20 +9,25 @@ export default function ExerciseDirectory() {
   const [selectedMuscles, setSelectedMuscles] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedEquipment, setSelectedEquipment] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const exercisesPerPage = 8;
 
   useEffect(() => {
-    getFilteredExercises({
-      targetMuscle: selectedMuscles.join(","),
-      level: selectedLevels.join(","),
-      equipment: selectedEquipment.join(","),
-    })
-      .then((res) => {
-        console.log(res.data.exercises);
+    const fetchData = async () => {
+      try {
+        const res = await getFilteredExercises({
+          targetMuscle: selectedMuscles.join(","),
+          level: selectedLevels.join(","),
+          equipment: selectedEquipment.join(","),
+        });
         setExercises(res.data.exercises);
-      })
-      .catch((err) =>
-        console.log("GETEXERCISE/CATCH/USEEFFECT/DIRECTORY", err)
-      );
+        setCurrentPage(1); // Reset to the first page when filters change
+      } catch (err) {
+        console.log("GETEXERCISE/CATCH/USEEFFECT/DIRECTORY", err);
+      }
+    };
+
+    fetchData();
   }, [selectedMuscles, selectedLevels, selectedEquipment]);
 
   const handleMuscleCheckboxChange = (muscle) => {
@@ -49,13 +54,21 @@ export default function ExerciseDirectory() {
     );
   };
 
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises?.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <section className="p-6">
       <div className="params  w-[90%] m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
-
-      <div className="">
-        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>
-        <div className="checkBox">
+        <div className="">
+          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>
+          <div className="checkBox">
           <Checkbox
             color="red"
             label="Chest"
@@ -120,10 +133,10 @@ export default function ExerciseDirectory() {
             onChange={() => handleMuscleCheckboxChange("Shoulders")}
           />
         </div>
-      </div>
-      <div className="">
-        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Difficulty</p>
-        <Checkbox
+        </div>
+        <div className="">
+          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Difficulty</p>
+          <Checkbox
           color="red"
           label="Beginner"
           icon={<MdOutlineFitnessCenter />}
@@ -144,11 +157,10 @@ export default function ExerciseDirectory() {
           checked={selectedLevels.includes("Advanced")}
           onChange={() => handleLevelCheckboxChange("Advanced")}
         />
-        {/* Repeat for other level checkboxes */}
-      </div>
-      <div className="">
-        <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Equipment</p>
-        <Checkbox
+        </div>
+        <div className="">
+          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Equipment</p>
+          <Checkbox
           color="red"
           label="Dumbbell"
           icon={<MdOutlineFitnessCenter />}
@@ -183,13 +195,25 @@ export default function ExerciseDirectory() {
           checked={selectedEquipment.includes("Kettlebells")}
           onChange={() => handleEquipmentCheckboxChange("Kettlebells")}
         />
-      </div>
+        </div>
       </div>
       <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-10 w-full rounded-t-xl ">
-        {exercises && exercises.map(exercise =>(
-          <ExerciseCard data={exercise} key={exercise._id}/>
-        ))}   
+        {currentExercises &&
+          currentExercises.map((exercise) => (
+            <ExerciseCard data={exercise} key={exercise._id} />
+          ))}
       </div>
+      <div className="pagination mt-4">
+      {exercises && (
+        <ul className="flex justify-center space-x-2">
+          {Array.from({ length: Math.ceil(exercises.length / exercisesPerPage) }, (_, i) => (
+            <li key={i} className={`cursor-pointer inline-block px-3 py-2 text-sm rounded-md transition duration-300 ${currentPage === i + 1 ? 'bg-deep-orange-500 text-white font-bold' : 'bg-white text-black hover:bg-gray-200'}`} onClick={() => paginate(i + 1)}>
+              {i + 1}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
     </section>
   );
 }
