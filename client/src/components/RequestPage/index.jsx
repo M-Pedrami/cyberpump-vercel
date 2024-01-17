@@ -12,6 +12,17 @@ export default function RequestPage() {
   console.log(requests);
   return (
     <section className="p-6">
+      <Link to="/dashboard/users">
+        <Button>Users</Button>
+      </Link>
+      <Link onClick={handleLogout}>
+        <Button>ADMIN Log Out</Button>
+      </Link>
+      <Link to="/dashboard/requests">
+        <Button>Create Admin Account</Button>
+      </Link>
+      <Link to="/workout"><Button>Workouts</Button></Link>
+      <Link to="/directory"><Button>Exercises</Button></Link>
       <div className="user card form-container w-full m-auto bg-gray-100 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
         <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
           <h1 className="text-2xl font-bold italic">Requests</h1>
@@ -56,17 +67,7 @@ export default function RequestPage() {
           </table>
         </div>
       </div>
-      <Link to="/dashboard/users">
-        <Button>Users</Button>
-      </Link>
-      <Link to="/dashboard/requests">
-        <Button>ADMIN Log Out</Button>
-      </Link>
-      <Link to="/dashboard/requests">
-        <Button>Create Admin Account</Button>
-      </Link>
-      <Link to="/workout"><Button>Workouts</Button></Link>
-      <Link to="/directory"><Button>Exercises</Button></Link>
+      
     </section>
   );
 }

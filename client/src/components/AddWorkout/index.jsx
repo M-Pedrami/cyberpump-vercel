@@ -16,6 +16,7 @@ import { MdLabelImportantOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import AddExercise from "../AddExercise";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function AddWorkout() {
   const { id } = useParams();
@@ -84,8 +85,11 @@ export default function AddWorkout() {
           formData.append(key, workout[key]);
         }
       }
-      const response = await axiosClient.post("/workout", formData, );
+      const response = await axiosClient.post("/workout", formData);
       console.log(response);
+      toast.success("Workout Created Successfully", {
+        theme: "dark",
+      })
     } catch (error) {
       console.log("handleSubmit/addExercise.jsx", error);
     }
@@ -93,6 +97,8 @@ export default function AddWorkout() {
 
   return (
     <section className="p-6">
+      <ToastContainer theme="dark" />
+
       <div className="card form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
         <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
           <h1 className="text-2xl font-bold italic">Add Workout</h1>
