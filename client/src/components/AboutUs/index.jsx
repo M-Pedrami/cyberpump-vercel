@@ -1,54 +1,58 @@
-import { Link } from "react-router-dom"
-import Background from "../../assets/AboutUs.jpg"
-
-
-
-
+import Background from "../../assets/AboutUs.jpg";
+import Nike from "../../assets/Nike.png";
+import Puma from "../../assets/Puma.svg";
+import MuscleFitness from "../../assets/Muscle-Fitness.svg";
+import FitnessClub from "../../assets/FitnessClub.svg";
+import Arsenal from "../../assets/Arsenal.svg"
+import Anta from "../../assets/Anta.svg"
 
 export default function AboutUs() {
   return (
-    <section className="py-48 flex flex-col items-center bg-black " style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url(${Background})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      
-    }}>
-      <h1 className="text-white text-4xl font-extrabold text-center tracking-wide"><span className=" text-deep-orange-500">Our</span> <span className=" italic">RIGHT</span> IN</h1>
-          <div className="flex flex-col mb-32 space-y-12 md:w-1/2">
-            <h1 className="max-w-l text-4xl font-bold text-center md:text-6xl md:text-left text-white">
-              Take Your <span className=" text-deep-orange-600">Fitness </span>{" "}
-              Game to the Next Level With Innovative{" "}
-              <span className=" text-deep-orange-600">Workout Plans</span>
-            </h1>
-            <p className="max-w-sm md:max-w-xl text-center text-deep-orange-600 md:text-left text-lg md:text-2xl">
-              Whether you are looking to{" "}
-              <span className=" font-bold text-white italic">
-                build muscles
-              </span>{" "}
-              or you want to{" "}
-              <span className=" font-bold text-white italic">
-                increase your strength
+    <section
+      className=" bg-black "
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${Background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className=" container flex flex-col md:flex-row items-center px-6 pt-20 mx-auto mt-10 space-y-0 md:space-y-0 md:space-x-44">
+        <div className="md:w-1/2">
+          <h1 className="text-white text-4xl font-extrabold mb-4 ">
+            <span className=" text-gray-50">Our</span>{" "}
+            <span className=" italic">Mission</span>{" "}
+          </h1>
+          <div className="mb-20 space-y-12">
+            <p className=" leading-6 text-3xl md:text-3xl md:text-left text-white">
+              At{" "}
+              <span className="italic text-orange-700 font-bold">
+                CyberPump
               </span>
-              , you will find your best{" "}
-              <span className=" font-bold text-white italic">
-                workout routine
-              </span>{" "}
-              here.
+              , our mission is to make fitness accessible,{" "}
+              <span className="italic text-orange-700">enjoyable</span>, and
+              sustainable for everyone. We believe that a well-rounded approach
+              to health goes beyond just physical exercise; it encompasses{" "}
+              <span className="italic text-orange-700">mental well-being</span>,
+              nutrition, and a{" "}
+              <span className="italic text-orange-700 font-bold">
+                supportive community.
+              </span>
             </p>
-            <div className="flex space-x-10">
-              <Link>
-                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300 ">
-                  Join Us
-                </button>
-              </Link>
-              <Link>
-                <button className="p-3 px-6 pt-2 text-white text-xl font-bold bg-deep-orange-700 bg-opacity-10 border border-deep-orange-700 rounded-full  hover:bg-deep-orange-700 transition-all duration-300">
-                  Personalize Workout
-                </button>
-              </Link>
-            </div>
           </div>
-      
+        </div>
+        <div className="brands grid grid-cols-2 gap-10 gap-x-28">
+          <div className="flex flex-col gap-16">
+            <img src={Nike} className="w-32" />
+            <img src={FitnessClub} className="w-32" />
+            <img src={Anta} className="w-32" />
+          </div>
+          <div className="flex flex-col gap-16 items-center">
+            <img src={MuscleFitness} className="w-32" />
+            <img src={Puma} className="w-32" />
+            <img src={Arsenal} className="w-20" />
+          </div>
+        </div>
+      </div>
     </section>
-  )
+  );
 }
