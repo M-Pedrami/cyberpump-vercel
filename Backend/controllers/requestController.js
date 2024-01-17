@@ -39,4 +39,24 @@ const getRequest = asyncHander(async (req, res) => {
   res.status(201).json({ message: "Request Sent Succesfully", data: found });
 });
 
-module.exports = { postRequest, getRequest, getRequests };
+const deleteRequest = asyncHander(async (req, res) => {
+  const requestId = req.params.id; // Use params to get the request ID
+
+  if (!requestId) {
+    res.status(400).json({ message: "Bad Request - Request ID is required" });
+    return;
+  }
+
+  const deletedRequest = await Request.findByIdAndDelete(requestId);
+
+  if (!deletedRequest) {
+    res.status(404).json({ message: "Request not found" });
+    return;
+  }
+
+  res.status(200).json({ message: "Request deleted successfully", data: deletedRequest });
+});
+
+
+
+module.exports = { postRequest, getRequest, getRequests, deleteRequest };
