@@ -20,6 +20,7 @@ import { useEffect } from "react";
 export default function ProfileMenu() {
   const { activeUser, setActiveUser } = useUser();
   const isUser = activeUser && activeUser.role === "user";
+  const isAdmin = activeUser && activeUser.role === "admin";
 
   const navigate = useNavigate();
   const notify = (message) => {
@@ -65,6 +66,41 @@ export default function ProfileMenu() {
                 <RiAccountCircleFill className="bg-transparent text-xl  " />
                 <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
                   My Profile
+                </Typography>
+              </MenuItem>
+            </Link>
+            <hr className="my-2 border-deep-orange-400" />
+            <MenuItem
+              className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900"
+              onClick={handleLogout}
+            >
+              <RiLogoutCircleFill className="bg-transparent text-xl " />
+              <Typography className="bg-transparent  text-sm font-bold   hover:text-gray-900">
+                Log Out
+              </Typography>
+            </MenuItem>
+            {<ToastContainer theme="dark" />}
+          </MenuList>
+        </Menu>
+      )}
+      {isAdmin && (
+        <Menu>
+          <MenuHandler>
+            <Avatar
+              variant="circular"
+              alt="avatar"
+              className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
+              src={
+                activeUser && activeUser.avatar ? activeUser.avatar : UserPhoto
+              }
+            />
+          </MenuHandler>
+          <MenuList className=" bg-transparent backdrop-blur-lg border-deep-orange-600 hover:border-deep-orange-500">
+            <Link to={"/dashboard/users"}>
+              <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900 ">
+                <RiAccountCircleFill className="bg-transparent text-xl  " />
+                <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
+                  Dashboard
                 </Typography>
               </MenuItem>
             </Link>

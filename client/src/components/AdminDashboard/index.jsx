@@ -16,21 +16,7 @@ export default function AdminDashboard() {
   const notify = (message) => {
     toast.success(message, { theme: "dark" });
   };
-  const handleLogout = async () => {
-    try {
-      const response = await axiosClient.post(
-        "/user/logout",
-        {},
-        
-      );
-
-      setActiveUser(null);
-      notify(`See You Soon Dear ${activeUser.username}`);
-      navigate("/");
-    } catch (error) {
-      console.log("handleLogOut", error);
-    }
-  };
+  
   useEffect(() => {
     getUsers()
       .then((res) => setUsers(res))
@@ -48,9 +34,6 @@ export default function AdminDashboard() {
     <section className="p-6 ">
       <Link to="/dashboard/requests">
         <Button>Request Page</Button>
-      </Link>
-      <Link onClick={handleLogout}>
-        <Button>ADMIN Log Out</Button>
       </Link>
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>

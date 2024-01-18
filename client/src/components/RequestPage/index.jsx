@@ -22,28 +22,11 @@ export default function RequestPage() {
       console.error("Error deleting request:", error);
     }
   };
-  const handleLogout = async () => {
-    try {
-      const response = await axiosClient.post(
-        "/user/logout",
-        {},
-        
-      );
-
-      setActiveUser(null);
-      notify(`See You Soon Dear ${activeUser.username}`);
-      navigate("/");
-    } catch (error) {
-      console.log("handleLogOut", error);
-    }
-  };
+  
   return (
     <section className="p-6">
       <Link to="/dashboard/users">
         <Button>Users</Button>
-      </Link>
-      <Link onClick={handleLogout}>
-        <Button>ADMIN Log Out</Button>
       </Link>
       <Link to="/dashboard/requests">
         <Button>Create Admin Account</Button>
