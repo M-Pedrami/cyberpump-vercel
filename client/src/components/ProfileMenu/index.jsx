@@ -6,43 +6,118 @@ import {
   Avatar,
   Typography,
 } from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { RiAccountCircleFill } from "react-icons/ri";
-import { RiDashboard2Fill } from "react-icons/ri";
 import { RiLogoutCircleFill } from "react-icons/ri";
-import UserPhoto from '../../assets/User.svg'
+import UserPhoto from "../../assets/User.svg";
+import { Link } from "react-router-dom";
+import { useUser } from "../../utils/UserContext";
+import axiosClient from "../../axiosClient";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProfileMenu() {
+  const { activeUser, setActiveUser } = useUser();
+  const isUser = activeUser && activeUser.role === "user";
+  const isAdmin = activeUser && activeUser.role === "admin";
+
+  const navigate = useNavigate();
+  const notify = (message) => {
+    toast.success(message, { theme: "dark" });
+  };
+  const handleLogout = async () => {
+    try {
+       await axiosClient.post(
+        "/user/logout",
+      );
+
+      setActiveUser(null);
+      notify(`See You Soon Dear ${activeUser.username}`);
+      navigate("/");
+    } catch (error) {
+      console.log("handleLogOut", error);
+    }
+  };
+
+  useEffect(() => {
+    if (navigate.location?.pathname === "/") {
+      // Call notify function when navigating to home page
+      notify();
+    }
+  }, [navigate.location?.pathname]);
   return (
-    <Menu>
-      <MenuHandler>
-        <Avatar
-          variant="circular"
-          alt="avatar"
-          className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
-          src={UserPhoto}
-        />
-      </MenuHandler>
-      <MenuList className=" bg-transparent border-deep-orange-600 hover:border-deep-orange-500">
-        <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900">
-          <RiAccountCircleFill className="bg-transparent text-xl  " />
-          <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
-            My Profile
-          </Typography>
-        </MenuItem>
-        <MenuItem className="flex items-center gap-2 focus:bg-white  text-deep-orange-400 focus:text-gray-900">
-          <RiDashboard2Fill className="bg-transparent text-xl " />
-          <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
-            Dashboard
-          </Typography>
-        </MenuItem>
-        <hr className="my-2 border-deep-orange-400" />
-        <MenuItem className="flex items-center gap-2 focus:bg-white  text-deep-orange-400 focus:text-gray-900">
-          <RiLogoutCircleFill className="bg-transparent text-xl " />
-          <Typography className="bg-transparent  text-sm font-bold   hover:text-gray-900">
-            Log Out
-          </Typography>
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <>
+      {isUser && (
+        <Menu>
+          <MenuHandler>
+            <Avatar
+              variant="circular"
+              alt="avatar"
+              className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
+              src={
+                activeUser && activeUser.avatar ? activeUser.avatar : UserPhoto
+              }
+            />
+          </MenuHandler>
+          <MenuList className=" bg-transparent backdrop-blur-lg border-deep-orange-600 hover:border-deep-orange-500">
+            <Link to={"/Profile"}>
+              <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900 ">
+                <RiAccountCircleFill className="bg-transparent text-xl  " />
+                <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
+                  My Profile
+                </Typography>
+              </MenuItem>
+            </Link>
+            <hr className="my-2 border-deep-orange-400" />
+            <MenuItem
+              className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900"
+              onClick={handleLogout}
+            >
+              <RiLogoutCircleFill className="bg-transparent text-xl " />
+              <Typography className="bg-transparent  text-sm font-bold   hover:text-gray-900">
+                Log Out
+              </Typography>
+            </MenuItem>
+            {<ToastContainer theme="dark" />}
+          </MenuList>
+        </Menu>
+      )}
+      {isAdmin && (
+        <Menu>
+          <MenuHandler>
+            <Avatar
+              variant="circular"
+              alt="avatar"
+              className="cursor-pointer ring ring-gray-900 hover:ring-orange-500"
+              src={
+                activeUser && activeUser.avatar ? activeUser.avatar : UserPhoto
+              }
+            />
+          </MenuHandler>
+          <MenuList className=" bg-transparent backdrop-blur-lg border-deep-orange-600 hover:border-deep-orange-500">
+            <Link to={"/dashboard/users"}>
+              <MenuItem className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900 ">
+                <RiAccountCircleFill className="bg-transparent text-xl  " />
+                <Typography className="bg-transparent  text-sm font-bold  hover:text-gray-900">
+                  Dashboard
+                </Typography>
+              </MenuItem>
+            </Link>
+            <hr className="my-2 border-deep-orange-400" />
+            <MenuItem
+              className="flex items-center gap-2 focus:bg-white   text-deep-orange-400 focus:text-gray-900"
+              onClick={handleLogout}
+            >
+              <RiLogoutCircleFill className="bg-transparent text-xl " />
+              <Typography className="bg-transparent  text-sm font-bold   hover:text-gray-900">
+                Log Out
+              </Typography>
+            </MenuItem>
+            {<ToastContainer theme="dark" />}
+          </MenuList>
+        </Menu>
+      )}
+    </>
   );
 }

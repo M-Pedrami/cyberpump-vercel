@@ -6,8 +6,8 @@ export default function Hero() {
     <div>
       <section className="hero">
         <div className="container flex flex-col md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:space-x-44">
-          <div className=" md:w-1/3 sm:w-1/2">
-            <img src={Photo} alt="" />
+          <div className=" md:w-1/3">
+            <img src={Photo} alt="HeroPicture" />
           </div>
           <div className="flex flex-col mb-32 space-y-12 md:w-1/2">
             <h1 className="max-w-l text-4xl font-bold text-center md:text-6xl md:text-left text-white">
@@ -33,7 +33,7 @@ export default function Hero() {
             <div className="flex space-x-10">
               <Link>
                 <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300 ">
-                  Get Started
+                  Join Us
                 </button>
               </Link>
               <Link>
