@@ -26,7 +26,6 @@ function App() {
     try {
       const response = await axiosClient.get("/user/profile");
       setActiveUser(response.data);
-      console.log("getUSER AXIOS RESPONSE", response);
     } catch (error) {
       console.log("ERROR GETUSER APP.JSX", error);
     }
@@ -35,7 +34,6 @@ function App() {
   useEffect(() => {
     getUser();
   }, []);
-  console.log("Active User:", activeUser);
 
   return (
     <>

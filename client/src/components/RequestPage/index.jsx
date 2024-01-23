@@ -10,7 +10,7 @@ export default function RequestPage() {
       .then((res) => setRequests(res.data))
       .catch((err) => console.log("getRequests/RequestPage", err));
   }, []);
-  console.log(requests);
+ 
   const handleDeleteRequest = async (requestId) => {
     try {
       // Make a request to delete the selected request

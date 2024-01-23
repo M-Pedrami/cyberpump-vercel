@@ -6,7 +6,7 @@ export default function UserWorkoutGrid() {
   const [workoutData, setWorkoutData] = useState([]);
   useEffect(()=>{
     getUserWorkouts()
-    .then(res=>{setWorkoutData(res); console.log(":::::::::",res)})
+    .then(res=>{setWorkoutData(res)})
     .catch(err=>(console.log("USEEFFECT WorkoutGrid Catch", err)))
   }, [])
   return (

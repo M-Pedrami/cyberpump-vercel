@@ -39,7 +39,7 @@ export default function Signup({ onSignup }) {
       const response = await axiosClient.post("/user/signup", user);
 
       if (response.status === 201) {
-        console.log("FROM SIGN UP COMPONENT LINE 44", response.data);
+     
         // Clear input fields after successful submission
         setEmail("");
         setUsername("");

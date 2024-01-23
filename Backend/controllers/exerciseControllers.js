@@ -88,7 +88,6 @@ const filteredExercises = async (req, res, next) => {
       const allExercises = await Exercise.find();
       return res.status(200).json({ exercises: allExercises });
     }
-    console.log(filter);
     const exercises = await Exercise.find(filter);
 
     if (exercises.length === 0) {

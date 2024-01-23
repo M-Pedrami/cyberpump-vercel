@@ -12,8 +12,10 @@ const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
 //Logger
 router.use((req, res, next) => {
   console.log(
-    `Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`
+    `Incoming request: ${req.method} ${req.path} `
   );
+  const referer = req.headers.referer || 'No referer';
+  console.log(`Front-end URL: ${referer}`);
   next();
 });
 

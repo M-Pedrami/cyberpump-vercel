@@ -36,13 +36,10 @@ export default function Profile() {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-            
           }
         );
 
         setActiveUser(response.data.data);
-
-        console.log(response.data);
       } catch (error) {
         console.log("FROM HANDLEUPLOAD", error);
       }

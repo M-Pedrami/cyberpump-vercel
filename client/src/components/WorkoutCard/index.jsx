@@ -16,7 +16,7 @@ export default function WorkoutCard({ data, setWorkoutData }) {
       .then((res) =>
         setWorkoutData((prevWorkouts) => {
           return prevWorkouts.filter((workout) => {
-            console.log(workout._id, data._id);
+            
             return workout._id !== data._id;
           });
         })

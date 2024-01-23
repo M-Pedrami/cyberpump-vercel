@@ -26,7 +26,6 @@ export default function AddExercise({ updateExercises, handleOpen }) {
         if (key === "video") {
           for (const videoKey in exercise[key]) {
             formData.append("video", exercise[key][videoKey]);
-            console.log(key, videoKey, exercise[key][videoKey]);
           }
         } else if (key === "instructions") {
           // Handle instructions as an array
@@ -41,8 +40,8 @@ export default function AddExercise({ updateExercises, handleOpen }) {
         }
       }
 
-      const response = await axiosClient.post("/exercise", formData, );
-      console.log(response);
+      const response = await axiosClient.post("/exercise", formData);
+
       toast.success("Exercise Created", {
         theme: "dark",
       });
@@ -60,7 +59,6 @@ export default function AddExercise({ updateExercises, handleOpen }) {
     let valid = false;
     for (const key in exercise) {
       const value = exercise[key];
-      console.log(!value.length, Array.isArray(value));
 
       if (!value) valid = false;
       if (Array.isArray(value) && !value.length) valid = false;
