@@ -116,7 +116,7 @@ export default function Profile() {
         }}
         className="bg-transparent border-b-8 border-deep-orange-700"
       >
-        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogHeader>Workout Request</DialogHeader>
         <DialogBody className="">
           <UserRequest handleOpen={handleOpen} />
         </DialogBody>
