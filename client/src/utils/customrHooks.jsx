@@ -31,6 +31,15 @@ const getFilteredExercises = async (filters) => {
     console.log("getExercises Catch", error);
   }
 };
+
+const deleteExercise = async(id) =>{
+  try {
+    const response = await axiosClient.delete(`/exercise/${id}`)
+    return response
+  } catch (error) {
+    console.log("ERROR Utils/deleteExercise", error)
+  }
+}
 //Workouts
 const getFilteredWorkouts = async (filters) => {
   try {
@@ -106,6 +115,7 @@ const getRequests = async () => {
 export {
   getExercises,
   getExercise,
+  deleteExercise,
   getWorkouts,
   getWorkout,
   getFilteredExercises,

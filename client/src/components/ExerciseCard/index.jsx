@@ -6,9 +6,18 @@ import { GiMuscleUp } from "react-icons/gi";
 import { GiSmallFire } from "react-icons/gi";
 import { PiBicycleFill } from "react-icons/pi";
 import { FaTrash } from "react-icons/fa";
+import { deleteExercise } from "../../utils/customrHooks";
 
-export default function ExerciseCard({ data }) {
-  console.log(data)
+export default function ExerciseCard({ data, setData }) {
+  const handleDelete =  () =>{
+    deleteExercise(data._id)
+    .then(res=>setData((prevData)=>{
+      return prevData.filter((exercise)=>{
+        return exercise._id != data._id
+      })
+    }))
+    .catch(err=>console.log("ERROR ExerciseCard/HandleDelete"))
+  }
   return (
     <div className=" relative">
       <Link to={`/exercise/${data._id}`}>
@@ -38,6 +47,7 @@ export default function ExerciseCard({ data }) {
           </div>
         </div>
       </Link>
+      <FaTrash className="text-white" onClick={handleDelete}/>
     </div>
   );
 }

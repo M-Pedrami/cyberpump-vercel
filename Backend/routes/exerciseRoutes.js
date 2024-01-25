@@ -5,6 +5,7 @@ const {
   getExercises,
   filteredExercises,
   getExercise,
+  deleteExercise,
 } = require("../controllers/exerciseControllers");
 const authenticate = require("../middlewares/authMiddleware");
 const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
@@ -12,23 +13,25 @@ const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
 //Logger
 router.use((req, res, next) => {
   console.log(
-    `Incoming request: ${req.method} ${req.path} `
-  );
-  const referer = req.headers.referer || 'No referer';
-  console.log(`Front-end URL: ${referer}`);
+    "Exercise Path was hit");
   next();
 });
 
+
+//createExercise, getExercises
 router
   .route("/")
   .post(authenticate, upload.array("video"), cloudinaryUpload, createExercise)
   .get(getExercises);
 
-//filtered
+//Delete Exercise
+router.route("/:id").delete(authenticate, deleteExercise);
+
+//getfiltered Exercises
 
 router.get("/filtered", filteredExercises);
 
-//SingleExercise
+//getExercise
 router.get("/:id", getExercise);
 
 module.exports = router;

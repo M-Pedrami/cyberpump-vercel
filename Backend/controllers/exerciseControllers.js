@@ -115,4 +115,26 @@ const getExercise = async (req, res) => {
   }
 };
 
-module.exports = { createExercise, getExercises, filteredExercises, getExercise };
+const deleteExercise = async(req, res, next)=>{
+  try {
+    const {
+      params: { id },
+    } = req;
+
+    const deletedExercise = await Exercise.findByIdAndDelete(id);
+
+    if (!deletedExercise) {
+      res.status(404);
+      throw new Error("Exercise not found");
+    }
+
+    res.status(200).json({
+      message: "Exercise deleted successfully",
+      data: deletedWorkout,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { createExercise, getExercises, filteredExercises, getExercise, deleteExercise };
