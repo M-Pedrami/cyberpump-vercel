@@ -37,8 +37,8 @@ export default function WorkoutGrid() {
     <section className="p-6 ">
       <div className="params flex gap-10 card form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 ">
 
-      <div className="Params Category ">
-        <p className="header border-deep-orange-500 border-l-8 text-left ms-3 p-2 text-black font-bold italic">Sort By Category</p>
+      <div className="Params Category border-deep-orange-500 border-l-8 text-left  p-2 ">
+        <p className="header  text-black font-bold italic">Sort By Category</p>
       <Checkbox
             color="red"
             label="Muscle Building"
@@ -75,8 +75,8 @@ export default function WorkoutGrid() {
             onChange={() => handleCategoryCheckboxChange("Celebrity")}
           />
       </div>
-      <div className="paramLevel">
-      <p className="header border-deep-orange-500 border-l-8 text-left ms-3 p-2 text-black font-bold italic">Sort By Level</p>
+      <div className="paramLevel border-deep-orange-500 border-l-8 text-left ms-3 p-2">
+      <p className="header  text-black font-bold italic">Sort By Level</p>
       <Checkbox
             color="red"
             label="Beginner"
