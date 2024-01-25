@@ -8,10 +8,12 @@ import { PiBicycleFill } from "react-icons/pi";
 import { FaTrash } from "react-icons/fa";
 import { deleteExercise } from "../../utils/customrHooks";
 import { useUser } from "../../utils/UserContext";
+import Thumbnail from "../../assets/ExerciseThumbnail.jpg"
 
 export default function ExerciseCard({ data, setData }) {
   const {activeUser} = useUser()
   const isAdmin = activeUser && activeUser.role==="admin"
+
   const handleDelete =  () =>{
     deleteExercise(data._id)
     .then(res=>setData((prevData)=>{
@@ -26,7 +28,7 @@ export default function ExerciseCard({ data, setData }) {
       <Link to={`/exercise/${data._id}`}>
         <div className="group text-white max-w-96    bg-deep-orange-700 bg-opacity-15 flex flex-col  h-[33rem] pb-5 m-auto border-t-8 rounded-3xl border-deep-orange-700 hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer  ">
           <div className="image">
-            <img src={data.thumbnail} className=" rounded-t-xl w-96 h-56" />
+            <img src={data.thumbnail ? data.thumbnail : Thumbnail} className=" rounded-t-xl w-96 h-56" />
           </div>
           <h1 className="header italic  group-hover:text-white text-2xl p-2 font-bold ">
             {data.name}
