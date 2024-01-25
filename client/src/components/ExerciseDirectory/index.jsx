@@ -10,7 +10,7 @@ export default function ExerciseDirectory() {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedEquipment, setSelectedEquipment] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const exercisesPerPage = 8;
+  const exercisesPerPage = 6;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,8 +66,8 @@ export default function ExerciseDirectory() {
   return (
     <section className="p-6">
       <div className="params  w-[90%] m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter by Target Muscle</p>
           <div className="checkBox">
           <Checkbox
             color="red"
@@ -134,8 +134,8 @@ export default function ExerciseDirectory() {
           />
         </div>
         </div>
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Difficulty</p>
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter By Difficulty</p>
           <Checkbox
           color="red"
           label="Beginner"
@@ -158,8 +158,8 @@ export default function ExerciseDirectory() {
           onChange={() => handleLevelCheckboxChange("Advanced")}
         />
         </div>
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Equipment</p>
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter By Equipment</p>
           <Checkbox
           color="red"
           label="Dumbbell"
