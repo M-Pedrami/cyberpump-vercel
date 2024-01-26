@@ -12,12 +12,12 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "Cyberpump", // Change the folder name to a general one
-    allowed_formats: ["jpg", "jpeg", "png", "mp4", "avi", "mov"], // Add both image and video formats
+    allowed_formats: ["jpg", "jpeg", "png"], 
     resource_type: "auto", // Automatically determine the resource type
     transformation: [{ width: 500, height: 500, crop: "limit" }],
   },
 });
 
-const upload = multer({ storage });
+const uploadImage = multer({ storage });
 
-module.exports = upload;
+module.exports = uploadImage;

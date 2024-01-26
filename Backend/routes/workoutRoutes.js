@@ -5,13 +5,16 @@ const {
   createWorkout,
   getWorkout,
   deleteWorkout,
-  getfilteredWorkouts
+  getfilteredWorkouts,
 } = require("../controllers/workoutControllers");
 
 const authenticate = require("../middlewares/authMiddleware");
-const upload =  require("../middlewares/uploadMedia")
+const upload = require("../middlewares/uploadImages");
 
-router.route("/").get(getfilteredWorkouts).post(authenticate, upload.single("thumbnail"),createWorkout);
+router
+  .route("/")
+  .get(getfilteredWorkouts)
+  .post(authenticate, upload.single("thumbnail"), createWorkout);
 router.route("/:id").get(getWorkout).delete(authenticate, deleteWorkout);
 
 module.exports = router;

@@ -197,7 +197,7 @@ export default function ExerciseDirectory() {
         />
         </div>
       </div>
-      <div className=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 p-10 w-full rounded-t-xl ">
+      <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-10 w-full rounded-t-xl ">
         {currentExercises &&
           currentExercises.map((exercise) => (
             <ExerciseCard data={exercise} setData={setExercises} key={exercise._id} />
