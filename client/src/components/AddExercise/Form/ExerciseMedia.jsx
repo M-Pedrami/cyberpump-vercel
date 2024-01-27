@@ -18,6 +18,21 @@ export default function ExerciseMedia({ exercise,setExercise }) {
         }}
         multiple
       />
+      <Input
+        type="file"
+        size="lg"
+        label="Thumbnail"
+        className="bg-transparent text-black"
+        onChange={(e) => {
+          const file = e.target.files[0];
+          setExercise((prevExercise) =>({
+            ...prevExercise, thumbnail: file
+
+          }),
+          );
+          
+        }}
+      />
     </div>
   );
 }

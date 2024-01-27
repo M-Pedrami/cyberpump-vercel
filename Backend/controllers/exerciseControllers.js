@@ -13,11 +13,13 @@ const createExercise = async (req, res, next) => {
         instructions,
         targetMuscle,
         exerciseType,
-        thumbnail,
+        
       },
       user: { id: creator },
-      videos,
+     
     } = req;
+    const thumbnailPath = req.files['thumbnail'] ? req.files['thumbnail'][0].path : null;
+    const videos = req.files['video'] ? req.files['video'].map(video => video.path) : [];
 
     const newExercise = await Exercise.create({
       name,
@@ -30,7 +32,7 @@ const createExercise = async (req, res, next) => {
       targetMuscle,
       exerciseType,
       video: videos,
-      thumbnail,
+      thumbnail: thumbnailPath,
     });
     res
       .status(201)

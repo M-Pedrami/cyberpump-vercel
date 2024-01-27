@@ -8,7 +8,7 @@ const {
   deleteExercise,
 } = require("../controllers/exerciseControllers");
 const authenticate = require("../middlewares/authMiddleware");
-const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
+const handleUpload = require("../middlewares/Upload")
 
 //Logger
 router.use((req, res, next) => {
@@ -21,7 +21,7 @@ router.use((req, res, next) => {
 //createExercise, getExercises
 router
   .route("/")
-  .post(authenticate, upload.array("video"), cloudinaryUpload, createExercise)
+  .post(authenticate,handleUpload, createExercise)
   .get(getExercises);
 
 //Delete Exercise
