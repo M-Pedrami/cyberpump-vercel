@@ -3,7 +3,7 @@ import Nike from "../../assets/Nike.png";
 import Puma from "../../assets/Puma.svg";
 import MuscleFitness from "../../assets/Muscle-Fitness.svg";
 import FitnessClub from "../../assets/FitnessClub.svg";
-import Arsenal from "../../assets/Arsenal.svg"
+import Jordan from "../../assets/Jordan.svg"
 import Anta from "../../assets/Anta.svg"
 
 export default function AboutUs() {
@@ -40,7 +40,7 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
-        <div className="brands grid grid-cols-2 gap-10 gap-x-28">
+        <div className="brands grid grid-cols-2 gap-10 gap-x-28 pb-20">
           <div className="flex flex-col gap-16">
             <img src={Nike} className="w-32" />
             <img src={FitnessClub} className="w-32" />
@@ -49,7 +49,7 @@ export default function AboutUs() {
           <div className="flex flex-col gap-16 items-center">
             <img src={MuscleFitness} className="w-32" />
             <img src={Puma} className="w-32" />
-            <img src={Arsenal} className="w-20" />
+            <img src={Jordan} className="w-20" />
           </div>
         </div>
       </div>
