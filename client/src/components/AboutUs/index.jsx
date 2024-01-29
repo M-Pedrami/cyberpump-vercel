@@ -11,7 +11,7 @@ export default function AboutUs() {
     <section
       className=" bg-black "
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${Background})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url(${Background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

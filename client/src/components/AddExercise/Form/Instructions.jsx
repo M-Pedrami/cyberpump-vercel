@@ -44,7 +44,7 @@ export default function Instructions({ setExercise }) {
               label={`Step ${index + 1}`}
               value={instruction}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              className="w-[500px]"
+              className="w-[550px]"
             />
             <Button
               onClick={() => handleRemoveStep(index)}

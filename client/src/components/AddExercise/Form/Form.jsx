@@ -41,19 +41,22 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
             ) : step === 1 ? (
               <p>
                 Enter The Instructions
-                <span className="font-bold italic">Step by Step.</span> Once
+                <span className="font-bold italic"> Step by Step.</span> Once
                 finished adding all the steps click on
-                <span className="font-bold italic">Finalize Instructions</span>
+                 <span className="font-bold italic"> Next</span>
               </p>
             ) : (
               <>
                 <p>
-                  Upload Videos for the Execise.
-                  <span className="font-bold italic">Maximum of 2 videos</span>
-                  are allowed
+                  Upload Videos and Thumbnail for the Execise.
+                  <span className="font-bold italic"> Maximum of 2 videos </span>
+                   are allowed
                 </p>
                 <p className="text-xs italic text-gray-600">
-                  Allowed Formats : MP4, AVI, Webp, FLV
+                  Allowed Video Formats : MP4, AVI, Webp, FLV
+                </p>
+                <p className="text-xs italic text-gray-600">
+                  Allowed Image Formats : JPG, PNG
                 </p>
               </>
             )}
