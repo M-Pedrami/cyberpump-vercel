@@ -10,7 +10,7 @@ export default function ExerciseDirectory() {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedEquipment, setSelectedEquipment] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const exercisesPerPage = 6;
+  const exercisesPerPage = 8;
 
   useEffect(() => {
     const fetchData = async () => {

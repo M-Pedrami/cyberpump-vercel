@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 export default function AddExercise({ updateExercises, handleOpen }) {
   const { activeUser } = useUser();
-  const [isValid, setIsValid] = useState(false);
   const [exercise, setExercise] = useState({
     name: "",
     description: "",
@@ -55,28 +54,14 @@ export default function AddExercise({ updateExercises, handleOpen }) {
       console.log("handleSubmit/addExercise.jsx", error);
     }
   };
-  const validateState = () => {
-    let valid = false;
-    for (const key in exercise) {
-      const value = exercise[key];
 
-      if (!value) valid = false;
-      if (Array.isArray(value) && !value.length) valid = false;
-      if (typeof value === "object" && !Object.keys(value).length)
-        valid = false;
-    }
-    return valid;
-  };
-  useEffect(() => {
-    setIsValid(validateState());
-  }, [exercise]);
+ 
   return (
     <div>
       <Form
         exercise={exercise}
         setExercise={setExercise}
         handleClick={handleSubmit}
-        isValid={isValid}
       />
       <ToastContainer theme="dark" />
     </div>

@@ -3,15 +3,13 @@ import ExerciseInfo from "./ExerciseInfo";
 import ExerciseMedia from "./ExerciseMedia";
 import { Button } from "@material-tailwind/react";
 import Instructions from "./Instructions";
-import { GrCaretPrevious } from "react-icons/gr";
-import { GrCaretNext } from "react-icons/gr";
 
-export default function Form({ exercise, setExercise, handleClick, isValid }) {
+export default function Form({ exercise, setExercise, handleClick }) {
   const [step, setStep] = useState(0);
   const headers = [
     " Exercise Information",
     " Exercise Instructions",
-    "Enter Exercise Media",
+    " Upload Exercise Media",
   ];
   const handlePrev = () => {
     setStep((currStep) => currStep - 1);
@@ -31,7 +29,6 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
 
   return (
     <section className="p-6 ">
-      <div className="progressbar"></div>
       <div className="form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500">
         <div className="header border-deep-orange-500 border-l-8 mb-6 text-left p-2 text-black">
           <h1 className=" text-2xl font-bold italic ">{headers[step]}</h1>
@@ -43,14 +40,17 @@ export default function Form({ exercise, setExercise, handleClick, isValid }) {
                 Enter The Instructions
                 <span className="font-bold italic"> Step by Step.</span> Once
                 finished adding all the steps click on
-                 <span className="font-bold italic"> Next</span>
+                <span className="font-bold italic"> Next</span>
               </p>
             ) : (
               <>
                 <p>
                   Upload Videos and Thumbnail for the Execise.
-                  <span className="font-bold italic"> Maximum of 2 videos </span>
-                   are allowed
+                  <span className="font-bold italic">
+                    {" "}
+                    Maximum of 2 videos{" "}
+                  </span>
+                  are allowed
                 </p>
                 <p className="text-xs italic text-gray-600">
                   Allowed Video Formats : MP4, AVI, Webp, FLV
