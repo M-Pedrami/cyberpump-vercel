@@ -183,17 +183,17 @@ export default function ExerciseDirectory() {
         />
         <Checkbox
           color="red"
-          label="Cables"
+          label="Cable"
           icon={<MdOutlineFitnessCenter />}
-          checked={selectedEquipment.includes("Cables")}
-          onChange={() => handleEquipmentCheckboxChange("Cables")}
+          checked={selectedEquipment.includes("Cable")}
+          onChange={() => handleEquipmentCheckboxChange("Cable")}
         />
         <Checkbox
           color="red"
-          label="Kettlebells"
+          label="Kettlebell"
           icon={<MdOutlineFitnessCenter />}
-          checked={selectedEquipment.includes("Kettlebells")}
-          onChange={() => handleEquipmentCheckboxChange("Kettlebells")}
+          checked={selectedEquipment.includes("Kettlebell")}
+          onChange={() => handleEquipmentCheckboxChange("Kettlebell")}
         />
         </div>
       </div>

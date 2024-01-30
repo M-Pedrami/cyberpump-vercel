@@ -82,7 +82,7 @@ const filteredExercises = async (req, res, next) => {
 
       // Use $in operator to match exercises with any of the target muscles
       filter.equipment = {
-        $in: equipmentsArray.map((equipment) => new RegExp(equipment, "i")),
+        $in: equipmentsArray.map((equipment) => new RegExp(`${equipment}`, "i")),
       };
     }
 
