@@ -26,7 +26,7 @@ export default function HamburgerMenu() {
     <>
         <Menu  >
           <MenuHandler>
-           <GiHamburgerMenu className="text-white text-3xl md:hidden"/>
+           <GiHamburgerMenu className="text-white text-3xl md:hidden cursor-pointer"/>
           </MenuHandler>
           <MenuList className="md:hidden bg-transparent backdrop-blur-sm border-deep-orange-600 hover:border-deep-orange-500 w-72 mt-5 ml-28 flex flex-col gap-5  items-center  justify-center p-10">
             <Link to="/Home">
