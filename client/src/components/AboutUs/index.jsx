@@ -18,12 +18,12 @@ export default function AboutUs() {
     >
       <div className=" container flex flex-col md:flex-row items-center px-6 pt-20 mx-auto mt-10 space-y-0 md:space-y-0 md:space-x-44">
         <div className="md:w-1/2">
-          <h1 className="text-white text-4xl font-extrabold mb-4 ">
+          <h1 className="text-white text-center md:text-left text-4xl font-extrabold mb-4 ">
             <span className=" text-gray-50">Our</span>{" "}
             <span className=" italic">Mission</span>{" "}
           </h1>
           <div className="mb-20 space-y-12">
-            <p className=" leading-6 text-3xl md:text-3xl md:text-left text-white">
+            <p className="text-center leading-6 text-2xl md:text-3xl md:text-left text-white">
               At{" "}
               <span className="italic text-orange-700 font-bold">
                 CyberPump

@@ -13,13 +13,13 @@ export default function ExercisePage() {
   return (
     <section className="">
   {exercise && (
-    <div className="Card flex flex-col text-left p-10 w-3/4 m-auto">
+    <div className="Card flex flex-col text-left p-10 md:w-3/4 m-auto">
       <div className="bg-blue-gray-50 p-8 rounded-t-xl border-t-8 border-t-deep-orange-500">
         <h1 className="text-4xl  text-left font-bold">
           {exercise.name}
         </h1>
       </div>
-      <div className="CardVideos flex space-x-0 justify-evenly p-5 gap-4 mt-4 ">
+      <div className="CardVideos md:flex  md:justify-evenly p-5 gap-4 mt-4 ">
         {exercise.video.map((video, index) => (
           <video
             key={index}  // Add a unique key for each video
@@ -28,7 +28,7 @@ export default function ExercisePage() {
             muted
             loop
             controls  // Add controls attribute
-            className="w-1/2 rounded-3xl border-t-4 border-b-8 border-orange-700"
+            className="md:w-1/2 rounded-3xl border-t-4 border-b-8 border-orange-700 mb-5"
           ></video>
         ))}
       </div>
