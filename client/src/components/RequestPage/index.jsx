@@ -54,12 +54,12 @@ export default function RequestPage() {
                   <td className="py-2 px-4 border-b">
                     {request.user.username}
                   </td>
-                  <td className="py-2 px-4 text-xs border-b italic flex flex-col">
+                  <td className="py-2 px-4 text-xs border-b italic md:flex md:flex-col">
                     <span>Height: {request.height}</span>
                     <span>Weight: {request.weight}</span>
                     <span>Age: {request.age}</span>
                   </td>
-                  <td className="py-2 px-4 border-b">{request.request}</td>
+                  <td className="py-2 px-4 border-b ">{request.request}</td>
                   <td className="py-2 px-4 border-b">
                     {new Date(request.created_at).toLocaleDateString("en-de", {
                       year: "numeric",
