@@ -13,11 +13,13 @@ const createExercise = async (req, res, next) => {
         instructions,
         targetMuscle,
         exerciseType,
-        thumbnail,
+        
       },
       user: { id: creator },
-      videos,
+     
     } = req;
+    const thumbnailPath = req.files['thumbnail'] ? req.files['thumbnail'][0].path : null;
+    const videos = req.files['video'] ? req.files['video'].map(video => video.path) : [];
 
     const newExercise = await Exercise.create({
       name,
@@ -30,7 +32,7 @@ const createExercise = async (req, res, next) => {
       targetMuscle,
       exerciseType,
       video: videos,
-      thumbnail,
+      thumbnail: thumbnailPath,
     });
     res
       .status(201)
@@ -80,7 +82,7 @@ const filteredExercises = async (req, res, next) => {
 
       // Use $in operator to match exercises with any of the target muscles
       filter.equipment = {
-        $in: equipmentsArray.map((equipment) => new RegExp(equipment, "i")),
+        $in: equipmentsArray.map((equipment) => new RegExp(`${equipment}`, "i")),
       };
     }
 
@@ -88,7 +90,6 @@ const filteredExercises = async (req, res, next) => {
       const allExercises = await Exercise.find();
       return res.status(200).json({ exercises: allExercises });
     }
-    console.log(filter);
     const exercises = await Exercise.find(filter);
 
     if (exercises.length === 0) {
@@ -116,4 +117,26 @@ const getExercise = async (req, res) => {
   }
 };
 
-module.exports = { createExercise, getExercises, filteredExercises, getExercise };
+const deleteExercise = async(req, res, next)=>{
+  try {
+    const {
+      params: { id },
+    } = req;
+
+    const deletedExercise = await Exercise.findByIdAndDelete(id);
+
+    if (!deletedExercise) {
+      res.status(404);
+      throw new Error("Exercise not found");
+    }
+
+    res.status(200).json({
+      message: "Exercise deleted successfully",
+      data: deletedWorkout,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { createExercise, getExercises, filteredExercises, getExercise, deleteExercise };

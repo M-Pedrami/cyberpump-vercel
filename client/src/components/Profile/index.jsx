@@ -36,13 +36,10 @@ export default function Profile() {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-            
           }
         );
 
         setActiveUser(response.data.data);
-
-        console.log(response.data);
       } catch (error) {
         console.log("FROM HANDLEUPLOAD", error);
       }
@@ -119,7 +116,7 @@ export default function Profile() {
         }}
         className="bg-transparent border-b-8 border-deep-orange-700"
       >
-        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogHeader>Workout Request</DialogHeader>
         <DialogBody className="">
           <UserRequest handleOpen={handleOpen} />
         </DialogBody>

@@ -16,7 +16,7 @@ export default function WorkoutCard({ data, setWorkoutData }) {
       .then((res) =>
         setWorkoutData((prevWorkouts) => {
           return prevWorkouts.filter((workout) => {
-            console.log(workout._id, data._id);
+            
             return workout._id !== data._id;
           });
         })
@@ -27,9 +27,9 @@ export default function WorkoutCard({ data, setWorkoutData }) {
   return (
     <div className=" relative">
       <Link to={`/workout/${data._id}`}>
-        <div className="group text-white    bg-deep-orange-700 bg-opacity-15 flex flex-col max-w-96 h-[30rem] pb-5 m-auto border-t-8 rounded-3xl border-deep-orange-700 hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer  ">
+        <div className="group text-white    bg-deep-orange-700 bg-opacity-15 flex flex-col max-w-96 h-[32rem] pb-5 m-auto border-t-8 rounded-3xl border-deep-orange-700 hover:bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 hover:text-white hover:cursor-pointer  ">
           <div className="image">
-            <img src={data.thumbnail} className=" rounded-t-xl" />
+            <img src={data.thumbnail} className=" rounded-t-xl w-96 h-64" />
           </div>
           <h1 className="header italic  group-hover:text-white text-2xl p-2 font-bold ">
             {data.name}
@@ -56,7 +56,7 @@ export default function WorkoutCard({ data, setWorkoutData }) {
       {activeUser && activeUser.role === "admin" && (
         <FaTrash
           size={27}
-          className=" text-xl text-white absolute right-2 bottom-2 hover:text-deep-orange-700 transition-all cursor-pointer"
+          className=" text-xl text-white absolute right-2 bottom-2 xl:right-12 hover:text-deep-orange-700 transition-all cursor-pointer"
           onClick={handleDelete}
         />
       )}

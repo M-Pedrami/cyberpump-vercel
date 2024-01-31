@@ -3,7 +3,7 @@ import Nike from "../../assets/Nike.png";
 import Puma from "../../assets/Puma.svg";
 import MuscleFitness from "../../assets/Muscle-Fitness.svg";
 import FitnessClub from "../../assets/FitnessClub.svg";
-import Arsenal from "../../assets/Arsenal.svg"
+import Jordan from "../../assets/Jordan.svg"
 import Anta from "../../assets/Anta.svg"
 
 export default function AboutUs() {
@@ -11,19 +11,19 @@ export default function AboutUs() {
     <section
       className=" bg-black "
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${Background})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url(${Background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <div className=" container flex flex-col md:flex-row items-center px-6 pt-20 mx-auto mt-10 space-y-0 md:space-y-0 md:space-x-44">
         <div className="md:w-1/2">
-          <h1 className="text-white text-4xl font-extrabold mb-4 ">
+          <h1 className="text-white text-center md:text-left text-4xl font-extrabold mb-4 ">
             <span className=" text-gray-50">Our</span>{" "}
             <span className=" italic">Mission</span>{" "}
           </h1>
           <div className="mb-20 space-y-12">
-            <p className=" leading-6 text-3xl md:text-3xl md:text-left text-white">
+            <p className="text-center leading-6 text-2xl md:text-3xl md:text-left text-white">
               At{" "}
               <span className="italic text-orange-700 font-bold">
                 CyberPump
@@ -40,7 +40,7 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
-        <div className="brands grid grid-cols-2 gap-10 gap-x-28">
+        <div className="brands grid grid-cols-2 gap-10 gap-x-28 pb-20">
           <div className="flex flex-col gap-16">
             <img src={Nike} className="w-32" />
             <img src={FitnessClub} className="w-32" />
@@ -49,7 +49,7 @@ export default function AboutUs() {
           <div className="flex flex-col gap-16 items-center">
             <img src={MuscleFitness} className="w-32" />
             <img src={Puma} className="w-32" />
-            <img src={Arsenal} className="w-20" />
+            <img src={Jordan} className="w-20" />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import LOGO from "../../assets/Brand.png";
 import { Link } from "react-router-dom";
 import ProfileMenu from "../ProfileMenu";
 import { useUser } from "../../utils/UserContext";
+import HamburgerMenu from "../HamburgerMenu";
 
 export default function Navbar() {
   const { activeUser } = useUser();
@@ -17,6 +18,8 @@ export default function Navbar() {
             <img src={LOGO} alt="Logo" />
           </Link>
         </div>
+        {/* Hamburger Menu */}
+        <HamburgerMenu/>
         {/* MENU ITEMS */}
         <div className="hidden md:flex space-x-6">
           {isUser && (

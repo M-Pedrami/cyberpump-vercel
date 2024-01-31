@@ -4,7 +4,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activeUser, setActiveUser] = useState(null);
-  console.log(activeUser);
+
 
   const setUser = (user) => {
     setActiveUser(user);

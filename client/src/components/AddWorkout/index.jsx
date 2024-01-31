@@ -26,7 +26,7 @@ export default function AddWorkout() {
     exercises: [],
     category: "",
     level: "",
-    createdFor: id,
+    ...(id && { createdFor: id }), //if there is id add the createdFor key otherwise igore it
     thumbnail: "",
   });
 
@@ -53,7 +53,7 @@ export default function AddWorkout() {
 
       // Reset the selected exercise
     }
-    console.log(workout.exercises);
+   
   };
 
   //fething the exercises to be added in the workout
@@ -86,7 +86,6 @@ export default function AddWorkout() {
         }
       }
       const response = await axiosClient.post("/workout", formData);
-      console.log(response);
       toast.success("Workout Created Successfully", {
         theme: "dark",
       })
@@ -196,7 +195,6 @@ export default function AddWorkout() {
                 label="exercise"
                 onChange={(value) =>
                   setSelectedExercise(() => {
-                    console.log(value);
                     return value;
                   })
                 }

@@ -7,9 +7,10 @@ const createWorkout = async (req, res, next) => {
     const {
       body: { name, description, exercises, level, category, createdFor },
       user: { id: creator },
-      file: {path},
+      file: {path} ={}, //for scenarios where file is not provided
     } = req;
-
+    
+    const thumbnail =path ? path : null//for scenarios where file is not provided
     
     const newWorkout = await Workout.create({
       name,
@@ -18,7 +19,7 @@ const createWorkout = async (req, res, next) => {
       level,
       category,
       creator,
-      thumbnail: path,
+      thumbnail,
       createdFor
     });
     res.status(201).json({ message: "new workout created", data: newWorkout });

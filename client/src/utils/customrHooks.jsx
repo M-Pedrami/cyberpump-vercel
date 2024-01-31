@@ -25,19 +25,28 @@ const getFilteredExercises = async (filters) => {
     const exercises = await axiosClient.get("/exercise/filtered", {
       params: filters,
     });
-    console.log("FROM FETCH HOOK", exercises);
+ 
     return exercises;
   } catch (error) {
     console.log("getExercises Catch", error);
   }
 };
+
+const deleteExercise = async(id) =>{
+  try {
+    const response = await axiosClient.delete(`/exercise/${id}`)
+    return response
+  } catch (error) {
+    console.log("ERROR Utils/deleteExercise", error)
+  }
+}
 //Workouts
 const getFilteredWorkouts = async (filters) => {
   try {
     const workouts = await axiosClient.get("/workout", {
       params: filters,
     });
-    console.log("FROM FETCH HOOK", workouts);
+   
     return workouts;
   } catch (error) {
     console.log("getExercises Catch", error);
@@ -65,7 +74,7 @@ const getUserWorkouts = async () => {
 const getWorkout = async (id) => {
   try {
     const response = await axiosClient.get(`/workout/${id}`);
-    console.log("getWorkout", response);
+ 
     return response.data.data;
   } catch (error) {
     console.log("getWorkout Catch", error);
@@ -106,6 +115,7 @@ const getRequests = async () => {
 export {
   getExercises,
   getExercise,
+  deleteExercise,
   getWorkouts,
   getWorkout,
   getFilteredExercises,

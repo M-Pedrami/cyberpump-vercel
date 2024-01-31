@@ -44,11 +44,11 @@ export default function Instructions({ setExercise }) {
               label={`Step ${index + 1}`}
               value={instruction}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              className="w-[600px] "
+              className="w-[550px]"
             />
             <Button
               onClick={() => handleRemoveStep(index)}
-              className="bg-transparent shadow-none hover:shadow-none hover:text-3xl translate-all duration-300"
+              className="bg-transparent w-20 shadow-none hover:shadow-none hover:text-3xl translate-all duration-300"
             >
               <CiCircleRemove className="text-red-500 text-4xl" />
             </Button>

@@ -17,7 +17,7 @@ export default function WorkoutPage() {
     getWorkout(id)
       .then((res) => {
         setExercisesData(res.exercises);
-        console.log("USEEFFECT", res);
+       
       })
       .catch((err) => console.log("USEEFFECT", err));
   }, []);

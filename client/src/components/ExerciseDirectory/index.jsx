@@ -65,10 +65,10 @@ export default function ExerciseDirectory() {
 
   return (
     <section className="p-6">
-      <div className="params  w-[90%] m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 flex ">
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter by Target Muscle</p>
-          <div className="checkBox">
+      <div className="params  md:w-[90%] m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 md:flex ">
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter by Target Muscle</p>
+          <div className="checkBox grid grid-cols-2">
           <Checkbox
             color="red"
             label="Chest"
@@ -134,8 +134,8 @@ export default function ExerciseDirectory() {
           />
         </div>
         </div>
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Difficulty</p>
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter By Difficulty</p>
           <Checkbox
           color="red"
           label="Beginner"
@@ -158,8 +158,8 @@ export default function ExerciseDirectory() {
           onChange={() => handleLevelCheckboxChange("Advanced")}
         />
         </div>
-        <div className="">
-          <p className="header border-deep-orange-500 border-l-8 ml-3 text-left p-2  text-black italic font-bold">Filter By Equipment</p>
+        <div className="border-deep-orange-500 border-l-8 ml-3 text-left p-2">
+          <p className="header   text-black italic font-bold">Filter By Equipment</p>
           <Checkbox
           color="red"
           label="Dumbbell"
@@ -183,24 +183,24 @@ export default function ExerciseDirectory() {
         />
         <Checkbox
           color="red"
-          label="Cables"
+          label="Cable"
           icon={<MdOutlineFitnessCenter />}
-          checked={selectedEquipment.includes("Cables")}
-          onChange={() => handleEquipmentCheckboxChange("Cables")}
+          checked={selectedEquipment.includes("Cable")}
+          onChange={() => handleEquipmentCheckboxChange("Cable")}
         />
         <Checkbox
           color="red"
-          label="Kettlebells"
+          label="Kettlebell"
           icon={<MdOutlineFitnessCenter />}
-          checked={selectedEquipment.includes("Kettlebells")}
-          onChange={() => handleEquipmentCheckboxChange("Kettlebells")}
+          checked={selectedEquipment.includes("Kettlebell")}
+          onChange={() => handleEquipmentCheckboxChange("Kettlebell")}
         />
         </div>
       </div>
       <div className=" grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 p-10 w-full rounded-t-xl ">
         {currentExercises &&
           currentExercises.map((exercise) => (
-            <ExerciseCard data={exercise} key={exercise._id} />
+            <ExerciseCard data={exercise} setData={setExercises} key={exercise._id} />
           ))}
       </div>
       <div className="pagination mt-4">

@@ -5,28 +5,33 @@ const {
   getExercises,
   filteredExercises,
   getExercise,
+  deleteExercise,
 } = require("../controllers/exerciseControllers");
 const authenticate = require("../middlewares/authMiddleware");
-const { upload, cloudinaryUpload } = require("../middlewares/uploadVideos");
+const handleUpload = require("../middlewares/Upload")
 
 //Logger
 router.use((req, res, next) => {
   console.log(
-    `Incoming request: ${req.method} ${req.url} ${req.body} ${req.query}`
-  );
+    "Exercise Path was hit");
   next();
 });
 
+
+//createExercise, getExercises
 router
   .route("/")
-  .post(authenticate, upload.array("video"), cloudinaryUpload, createExercise)
+  .post(authenticate,handleUpload, createExercise)
   .get(getExercises);
 
-//filtered
+//Delete Exercise
+router.route("/:id").delete(authenticate, deleteExercise);
+
+//getfiltered Exercises
 
 router.get("/filtered", filteredExercises);
 
-//SingleExercise
+//getExercise
 router.get("/:id", getExercise);
 
 module.exports = router;

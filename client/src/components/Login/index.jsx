@@ -37,7 +37,6 @@ export default function Login({ onSignup }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form...");
 
     try {
       const response = await axiosClient.post("/user/login", user);

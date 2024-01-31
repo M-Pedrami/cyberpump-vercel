@@ -1,7 +1,8 @@
 import Photo from "../../assets/Hero.jpg";
 import { Link } from "react-router-dom";
-
+import { useUser } from "../../utils/UserContext";
 export default function Hero() {
+  const {activeUser} = useUser()
   return (
     <div>
       <section className="hero">
@@ -31,12 +32,12 @@ export default function Hero() {
               here.
             </p>
             <div className="flex space-x-10">
-              <Link>
-                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300 ">
+              <Link to={activeUser ?  "/profile" : "/signup"}>
+                <button className=" p-3 px-6 pt-2 text-white font-bold text-xl  bg-deep-orange-700 rounded-full hover:bg-deep-orange-700 hover:bg-opacity-10 border border-deep-orange-700 transition-all duration-300">
                   Join Us
                 </button>
               </Link>
-              <Link>
+              <Link to={activeUser ?  "/profile" : "/signup"}>
                 <button className="p-3 px-6 pt-2 text-white text-xl font-bold bg-deep-orange-700 bg-opacity-10 border border-deep-orange-700 rounded-full  hover:bg-deep-orange-700 transition-all duration-300">
                   Personalize Workout
                 </button>
