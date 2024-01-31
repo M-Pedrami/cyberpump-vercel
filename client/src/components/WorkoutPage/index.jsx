@@ -4,13 +4,13 @@ import Exercise from "../Exercise";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 
-import {getExercises, getWorkout} from "../../utils/customrHooks";
+import { getWorkout } from "../../utils/customrHooks";
 
 export default function WorkoutPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesData, setExercisesData] = useState([]);
   const exercisesPerPage = 1;
-  const {id} = useParams();
+  const { id } = useParams();
 
   //getting the exercises from backend
   useEffect(() => {
@@ -48,8 +48,7 @@ export default function WorkoutPage() {
           <GrCaretPrevious className="text-5xl  text-deep-orange-700 hover:text-4xl transition-all duration-500 hover:text-opacity-50" />
         </button>
         <span className="text-xl font-bold text-white  ">
-          {" "}
-          Exercise {currentPage} of {totalPages}{" "}
+          Exercise {currentPage} of {totalPages}
         </span>
         <button
           className="w-10"
@@ -62,7 +61,7 @@ export default function WorkoutPage() {
       {exercisesToDisplay?.map((exercise) => (
         <Exercise key={exercise.id} exercise={exercise} />
       ))}
-      <p className="text-white text-center text-5xl">THIS IS A TEST</p>
+      
     </section>
   );
 }

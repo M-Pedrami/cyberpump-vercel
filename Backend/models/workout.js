@@ -24,6 +24,15 @@ const workoutSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  createdFor : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ["Muscle Building", "Strength", "Cardio", "Fat Loss", "Celebrity"],
+  },
 
   thumbnail : {
     type: String,

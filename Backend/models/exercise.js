@@ -13,6 +13,11 @@ const exerciseSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  createdFor : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+
   category: {
     type: String,
     required: true,

@@ -5,8 +5,8 @@ export default function Exercise({exercise}) {
   return (
     <section className="">
       <div className="Card flex flex-col text-left p-10 w-3/4 m-auto">
-        <div className="CardHeader bg-gradient-to-r from-deep-orange-700 to-deep-orange-400 p-4 w-full rounded-2xl">
-          <h1 className="text-4xl text-white text-left font-bold">
+        <div className="bg-blue-gray-50 p-8 rounded-t-xl border-t-8 border-t-deep-orange-500">
+          <h1 className="text-4xl text-black text-left font-bold">
             {exercise?.name}
             
           </h1>
@@ -21,10 +21,10 @@ export default function Exercise({exercise}) {
           ></video>))}
           
         </div>
-        <div className="CardSteps flex flex-col gap-2 text-lg text-white">
-          {exercise?.instructions.map((instruction, index)=>( <p>
-            <span className="italic text-lg text-deep-orange-700 font-body">Step {index+1}: </span>{instruction}
-            itaque.
+        <div className=" w-full m-auto bg-blue-gray-50 p-8 rounded-t-xl border-t-8 border-t-deep-orange-500">
+          {exercise?.instructions.map((instruction, index)=>( <p className="mb-5">
+            <span className="italic text-lg text-deep-orange-700 font-body font-bold">Step {index+1}: </span><span className="">{instruction}</span>
+            
           </p>))}
           
         </div>
