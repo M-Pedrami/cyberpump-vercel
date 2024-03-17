@@ -36,9 +36,7 @@ app.use("/api/exercise", exerciseRouter);
 app.use("/api/workout", workoutRouter);
 app.use("/api/request", requestRouter);
 
-app.get("/*", (req, res)=>{
-  res.sendFile(path.join(__dirname, "../client", "dist", "index.html"))
-})
+
 
 //Error Handler
 app.use(errorHandler);
