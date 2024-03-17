@@ -22,10 +22,9 @@ db();
 //Middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "../client", "dist")))
 app.use(
   cors({
-    origin: "http://localhost:5173", //it is important to add these two lines otherwise the cookies will not work between frontend and backend since they are running on two different servers
+    origin: "https://cyberpump-orcin.vercel.app", //it is important to add these two lines otherwise the cookies will not work between frontend and backend since they are running on two different servers
     credentials: true,
   })
 );
@@ -35,8 +34,9 @@ app.use("/api/user", userRouter);
 app.use("/api/exercise", exerciseRouter);
 app.use("/api/workout", workoutRouter);
 app.use("/api/request", requestRouter);
-
-
+app.use("/", (req, res) => {
+  res.send("server is running");
+});
 
 //Error Handler
 app.use(errorHandler);
