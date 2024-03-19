@@ -33,11 +33,20 @@ const registerUser = asyncHander(async (req, res, next) => {
   });
   if (user) {
     //creating a paylod with necessary info, signing it using jwt as a token and sending the token in the cookie to the frontend.
-    const payload = { id: user._id, email: user.email, name: user.username, role:user.role };
+    const payload = {
+      id: user._id,
+      email: user.email,
+      name: user.username,
+      role: user.role,
+    };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "120m",
     });
-    res.cookie("access_token", token, { httpOnly: true, maxAge: "36600000" });
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      maxAge: "36600000",
+      path: "/",
+    });
     res.status(201).json({
       message: "new user created",
       data: { id: user._id, email: user.email, name: user.username, token },
@@ -63,13 +72,17 @@ const loginUser = asyncHander(async (req, res) => {
       email: user.email,
       username: user.username,
       avatar: user.avatar,
-      role: user.role
+      role: user.role,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "300m",
     });
     res
-      .cookie("access_token", token, { httpOnly: true, maxAge: "3600000" })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        maxAge: "3600000",
+        path: "/",
+      })
       .json(payload);
   } else {
     res.status(400);
@@ -92,15 +105,13 @@ const updateProfile = asyncHander(async (req, res) => {
   //get the user from the req.user created by authenticate middleware
   const user = req.user;
 
- 
-
   const updatedUser = await User.findByIdAndUpdate(
     //using the user from req.user to find the user to be update in the database
     user.id,
     { $set: { avatar: path } },
     { new: true }
   );
- 
+
   res
     .status(200)
     .json({ message: "Profile update Successfully", data: updatedUser });
