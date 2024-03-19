@@ -42,11 +42,7 @@ const registerUser = asyncHander(async (req, res, next) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "120m",
     });
-    res.cookie("access_token", token, {
-      httpOnly: true,
-      maxAge: "36600000",
-      path: "/",
-    });
+    res.cookie("access_token", token, { httpOnly: true, maxAge: "36600000" });
     res.status(201).json({
       message: "new user created",
       data: { id: user._id, email: user.email, name: user.username, token },
@@ -81,7 +77,8 @@ const loginUser = asyncHander(async (req, res) => {
       .cookie("access_token", token, {
         httpOnly: true,
         maxAge: "3600000",
-        path: "/",
+        secure: true,
+        sameSite: "None",
       })
       .json(payload);
   } else {
