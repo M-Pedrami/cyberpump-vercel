@@ -27,7 +27,7 @@ function App() {
       const response = await axiosClient.get("/user/profile");
       setActiveUser(response.data);
     } catch (error) {
-      console.log("ERROR GETUSER APP.JSX", error);
+      throw new Error("No User");
     }
   };
 
