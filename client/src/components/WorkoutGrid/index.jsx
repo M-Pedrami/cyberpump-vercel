@@ -1,21 +1,34 @@
-
 import WorkoutCard from "../WorkoutCard";
 import { getFilteredWorkouts, getWorkouts } from "../../utils/customrHooks";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MdOutlineFitnessCenter } from "react-icons/md";
 import { Checkbox } from "@material-tailwind/react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = {
+  display: "block",
+  margin: "100px auto",
+};
 export default function WorkoutGrid() {
   const [workoutData, setWorkoutData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     getFilteredWorkouts({
       category: selectedCategory.join(","),
       level: selectedLevels.join(","),
     })
-      .then((res) => setWorkoutData(res.data.workouts))
-      .catch((err) => console.log("USEEFFECT WorkoutGrid Catch", err));
+      .then((res) => {
+        setWorkoutData(res.data.workouts);
+        setLoading(false); // Move setLoading inside then block
+      })
+      .catch((err) => {
+        console.log("USEEFFECT WorkoutGrid Catch", err);
+        setLoading(false); // Move setLoading inside catch block
+      });
   }, [selectedCategory, selectedLevels]);
 
   const handleCategoryCheckboxChange = (category) => {
@@ -36,10 +49,11 @@ export default function WorkoutGrid() {
   return (
     <section className="p-6 ">
       <div className="params flex gap-10 card form-container w-fit m-auto bg-blue-gray-50 p-6 rounded-t-xl border-t-8 border-t-deep-orange-500 ">
-
-      <div className="Params Category border-deep-orange-500 border-l-8 text-left  p-2 ">
-        <p className="header  text-black font-bold italic">Sort By Category</p>
-      <Checkbox
+        <div className="Params Category border-deep-orange-500 border-l-8 text-left  p-2 ">
+          <p className="header  text-black font-bold italic">
+            Sort By Category
+          </p>
+          <Checkbox
             color="red"
             label="Muscle Building"
             icon={<MdOutlineFitnessCenter />}
@@ -74,10 +88,10 @@ export default function WorkoutGrid() {
             checked={selectedCategory.includes("Celebrity")}
             onChange={() => handleCategoryCheckboxChange("Celebrity")}
           />
-      </div>
-      <div className="paramLevel border-deep-orange-500 border-l-8 text-left ms-3 p-2">
-      <p className="header  text-black font-bold italic">Sort By Level</p>
-      <Checkbox
+        </div>
+        <div className="paramLevel border-deep-orange-500 border-l-8 text-left ms-3 p-2">
+          <p className="header  text-black font-bold italic">Sort By Level</p>
+          <Checkbox
             color="red"
             label="Beginner"
             icon={<MdOutlineFitnessCenter />}
@@ -98,14 +112,30 @@ export default function WorkoutGrid() {
             checked={selectedLevels.includes("Advanced")}
             onChange={() => handleLevelCheckboxChange("Advanced")}
           />
+        </div>
       </div>
-      </div>
-      <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4 gap-x-1 p-10">
-        {workoutData &&
-          workoutData.map((workout) => (
-            <WorkoutCard key={workout._id} data={workout} setWorkoutData={setWorkoutData}  />
-          ))}
-      </div>
+      {loading ? (
+        <div className="text-center text-5xl text-orange-800 m-auto">
+          <ClipLoader
+            color="#ea580c"
+            loading={loading}
+            cssOverride={override}
+            size={150}
+            aria-label="Loading Spinner"
+          />{" "}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4 gap-x-1 p-10">
+          {workoutData &&
+            workoutData.map((workout) => (
+              <WorkoutCard
+                key={workout._id}
+                data={workout}
+                setWorkoutData={setWorkoutData}
+              />
+            ))}
+        </div>
+      )}
     </section>
   );
 }
