@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = {
+  display: "block",
+  margin: "100px auto",
+};
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
@@ -62,7 +68,15 @@ export default function AdminDashboard() {
               </tr>
             </thead>
             {loading ? (
-              <h1 className="text-5xl text-orange-600">User are Loading</h1>
+              <div className="text-center text-5xl text-orange-800 m-auto">
+                <ClipLoader
+                  color="#ea580c"
+                  loading={loading}
+                  cssOverride={override}
+                  size={150}
+                  aria-label="Loading Spinner"
+                />{" "}
+              </div>
             ) : (
               <tbody>
                 {users.map((user) => (
