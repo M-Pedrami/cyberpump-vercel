@@ -5,24 +5,27 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../utils/UserContext";
-import axiosClient from "../../axiosClient";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
-  const { activeUser, setActiveUser } = useUser();
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
   const notify = (message) => {
     toast.success(message, { theme: "dark" });
   };
-  
+
   useEffect(() => {
     getUsers()
-      .then((res) => setUsers(res))
-      .catch((err) => console.log("from AdminDashboard useEffect", err));
+      .then((res) => {
+        setUsers(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("from AdminDashboard useEffect");
+        setLoading(false);
+      });
   }, []);
-  console.log("users", users);
 
   useEffect(() => {
     if (navigate.location?.pathname === "/") {
@@ -58,30 +61,34 @@ export default function AdminDashboard() {
                 <th className="py-2 px-4 border-b text-left">Member Since</th>
               </tr>
             </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-100">
-                  <td className="py-2 px-4 border-b">
-                    <Avatar src={user.avatar} />
-                  </td>
-                  <td className="py-2 px-4 border-b font-bold italic">
-                    {user.username}
-                  </td>
-                  <td className="py-2 px-4 border-b">{user.email}</td>
-                  <td className="py-2 px-4 border-b">
-                    {new Date(user.created_at).toLocaleDateString("en-de", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {loading ? (
+              <h1 className="text-5xl text-orange-600">User are Loading</h1>
+            ) : (
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id} className="hover:bg-gray-100">
+                    <td className="py-2 px-4 border-b">
+                      <Avatar src={user.avatar} />
+                    </td>
+                    <td className="py-2 px-4 border-b font-bold italic">
+                      {user.username}
+                    </td>
+                    <td className="py-2 px-4 border-b">{user.email}</td>
+                    <td className="py-2 px-4 border-b">
+                      {new Date(user.created_at).toLocaleDateString("en-de", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </div>
       </div>
-      
+
       {<ToastContainer theme="dark" />}
     </section>
   );
