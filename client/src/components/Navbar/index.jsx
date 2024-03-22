@@ -19,7 +19,7 @@ export default function Navbar() {
           </Link>
         </div>
         {/* Hamburger Menu */}
-        <HamburgerMenu/>
+        <HamburgerMenu />
         {/* MENU ITEMS */}
         <div className="hidden md:flex space-x-6">
           {isUser && (
@@ -55,12 +55,12 @@ export default function Navbar() {
             </Link>
           )}
           {!activeUser && (
-            <Link
-              to="/login"
+            <a
+              href="#aboutus"
               className="font-bold text-orange-600 hover:text-orange-400"
             >
               ABOUT US
-            </Link>
+            </a>
           )}
           <Link
             to={activeUser ? "/" : "/login"}

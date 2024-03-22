@@ -10,6 +10,7 @@ export default function AboutUs() {
   return (
     <section
       className=" bg-black "
+      id="aboutus"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url(${Background})`,
         backgroundSize: "cover",
