@@ -42,7 +42,12 @@ const registerUser = asyncHander(async (req, res, next) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "120m",
     });
-    res.cookie("access_token", token, { httpOnly: true, maxAge: "36600000" });
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      maxAge: "36600000",
+      secure: true,
+      sameSite: "None",
+    });
     res.status(201).json({
       message: "new user created",
       data: { id: user._id, email: user.email, name: user.username, token },
